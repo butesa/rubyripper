@@ -482,12 +482,12 @@ msgid "Artist"
 msgstr "Künstler"
 
 #, fuzzy
-msgid "Genre"
-msgstr "Genre:"
-
-#, fuzzy
 msgid "Album"
 msgstr "Album:"
+
+#, fuzzy
+msgid "Genre"
+msgstr "Genre:"
 
 #, fuzzy
 msgid "Year"
@@ -1530,8 +1530,9 @@ msgstr ""
 msgid "Sector mismatches at the following times, requiring extra trials:"
 msgstr ""
 
-msgid "The drive is spinning for more than 30 minutes."
-msgstr ""
+#, fuzzy
+msgid "Drive has been spinning for more than 30 minutes."
+msgstr "n"
 
 msgid "Taking a timeout of 2 minutes to protect the hardware."
 msgstr ""

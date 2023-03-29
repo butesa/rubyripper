@@ -406,11 +406,11 @@ msgstr "Options pour LAME"
 msgid "Artist"
 msgstr "Artiste"
 
-msgid "Genre"
-msgstr "Genre"
-
 msgid "Album"
 msgstr "Album"
+
+msgid "Genre"
+msgstr "Genre"
 
 msgid "Year"
 msgstr "Année"
@@ -1386,7 +1386,8 @@ msgstr ""
 "Non-concordance des secteurs aux positions suivantes, essais supplémentaires r"
 "equis :"
 
-msgid "The drive is spinning for more than 30 minutes."
+#, fuzzy
+msgid "Drive has been spinning for more than 30 minutes."
 msgstr "Le lecteur tourne depuis plus de 30 minutes."
 
 msgid "Taking a timeout of 2 minutes to protect the hardware."

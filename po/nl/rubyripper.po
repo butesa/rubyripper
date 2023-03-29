@@ -410,11 +410,11 @@ msgstr "Extra lame parameters"
 msgid "Artist"
 msgstr "Artiest"
 
-msgid "Genre"
-msgstr "Genre"
-
 msgid "Album"
 msgstr "Album"
+
+msgid "Genre"
+msgstr "Genre"
 
 msgid "Year"
 msgstr "Jaar"
@@ -1407,7 +1407,8 @@ msgstr "Bestandsgrootte is onjuist! Volgende poging"
 msgid "Sector mismatches at the following times, requiring extra trials:"
 msgstr "Sector heeft een mismatch op de volgende posities, meerdere pogingen nodig:"
 
-msgid "The drive is spinning for more than 30 minutes."
+#, fuzzy
+msgid "Drive has been spinning for more than 30 minutes."
 msgstr "De drive is al meer dan 30 minuten actief."
 
 msgid "Taking a timeout of 2 minutes to protect the hardware."

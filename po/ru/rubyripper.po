@@ -462,12 +462,12 @@ msgid "Artist"
 msgstr "Исполнитель"
 
 #, fuzzy
-msgid "Genre"
-msgstr "Жанр:"
-
-#, fuzzy
 msgid "Album"
 msgstr "Альбом:"
+
+#, fuzzy
+msgid "Genre"
+msgstr "Жанр:"
 
 #, fuzzy
 msgid "Year"
@@ -1530,7 +1530,8 @@ msgstr ""
 msgid "Sector mismatches at the following times, requiring extra trials:"
 msgstr "Сектор не отвечает в следующие моменты времени, требуя дополнительных попыток:"
 
-msgid "The drive is spinning for more than 30 minutes."
+#, fuzzy
+msgid "Drive has been spinning for more than 30 minutes."
 msgstr "Привод вращается более 30 минут."
 
 msgid "Taking a timeout of 2 minutes to protect the hardware."
