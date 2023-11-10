@@ -40,14 +40,14 @@ describe ScanDiscCdparanoia do
     end
 
     it "should raise an error when a function other than scan() is called" do
-      expect(lambda{disc.getStartSector(1)}).to raise_error(RuntimeError, /getStartSector/)
-      expect(lambda{disc.getLengthSector(1)}).to raise_exception(RuntimeError, /getLengthSector/)
-      expect(lambda{disc.getLengthText(1)}).to raise_exception(RuntimeError, /getLengthText/)
-      expect(lambda{disc.getFileSize(1)}).to raise_exception(RuntimeError, /getFileSize/)
-      expect(lambda{disc.getStartSector('image')}).to raise_exception(RuntimeError, /getStartSector/)
-      expect(lambda{disc.getLengthSector('image')}).to raise_exception(RuntimeError, /getLengthSector/)
-      expect(lambda{disc.getLengthText('image')}).to raise_exception(RuntimeError, /getLengthText/)
-      expect(lambda{disc.getFileSize('image')}).to raise_exception(RuntimeError, /getFileSize/)
+      expect{disc.getStartSector(1)}.to raise_error(RuntimeError, /getStartSector/)
+      expect{disc.getLengthSector(1)}.to raise_exception(RuntimeError, /getLengthSector/)
+      expect{disc.getLengthText(1)}.to raise_exception(RuntimeError, /getLengthText/)
+      expect{disc.getFileSize(1)}.to raise_exception(RuntimeError, /getFileSize/)
+      expect{disc.getStartSector('image')}.to raise_exception(RuntimeError, /getStartSector/)
+      expect{disc.getLengthSector('image')}.to raise_exception(RuntimeError, /getLengthSector/)
+      expect{disc.getLengthText('image')}.to raise_exception(RuntimeError, /getLengthText/)
+      expect{disc.getFileSize('image')}.to raise_exception(RuntimeError, /getFileSize/)
     end
   end
 
