@@ -29,7 +29,7 @@ module Preferences
       @out = out
 
       validateCustomFilename(customFilename)
-      readPreferencesFromFile() if File.exists?(@prefs.filename)
+      readPreferencesFromFile() if File.exist?(@prefs.filename)
       setValidCdromDrive()
     end
 
@@ -37,7 +37,7 @@ private
 
     # check if the file exists, if not return to defaults
     def validateCustomFilename(customFilename)
-      @prefs.filename = customFilename if File.exists?(customFilename)
+      @prefs.filename = customFilename if File.exist?(customFilename)
     end
 
     # read all preferences from the file
@@ -50,7 +50,7 @@ private
     
     # make sure the user has a valid drive set
     def setValidCdromDrive
-      if not @file.exists?(@prefs.cdrom)
+      if not @file.exist?(@prefs.cdrom)
         @prefs.cdrom = @deps.cdrom
       end
     end

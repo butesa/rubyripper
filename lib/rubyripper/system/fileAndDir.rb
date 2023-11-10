@@ -55,8 +55,8 @@ class FileAndDir
     Dir.glob(pattern)
   end
   
-  def exists?(filename)
-    if File.exists?(file = File.expand_path(filename))
+  def exist?(filename)
+    if File.exist?(file = File.expand_path(filename))
       return file
     else		  
       return false

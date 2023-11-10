@@ -48,7 +48,7 @@ class Rubyripper
 
   # check the existence of the output dir
   def dirStillAvailable
-    @fileScheme.dir.values.each{|dir| return false if @file.exists?(dir) }
+    @fileScheme.dir.values.each{|dir| return false if @file.exist?(dir) }
     return true
   end
 

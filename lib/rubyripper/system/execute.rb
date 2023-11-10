@@ -76,6 +76,6 @@ attr_reader :status
 
   # return created file with command
   def readFile
-    return File.read(@filename) if File.exists?(@filename)
+    return File.read(@filename) if File.exist?(@filename)
   end
 end

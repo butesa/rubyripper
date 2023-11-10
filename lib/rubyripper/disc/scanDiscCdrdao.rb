@@ -126,7 +126,7 @@ private
   end
   
   def cdrdaoFileValid
-    return false unless @fileAndDir.exists?(@tempfile)
+    return false unless @fileAndDir.exist?(@tempfile)
     @contents = @fileAndDir.read(@tempfile)
     cleanupTempFile()
   end
