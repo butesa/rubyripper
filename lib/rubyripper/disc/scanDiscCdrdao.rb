@@ -142,6 +142,7 @@ private
 
   def parseCdrdaoFile
     track = nil
+    @contents.encode!('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '?')
     @contents.each_line do |line|
       if line[0..1] == 'CD' && @discType.nil?
         @discType = line.strip()
