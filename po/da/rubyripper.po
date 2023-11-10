@@ -1,7 +1,7 @@
 # Danish translation rubyripper.
 # Copyright (C) 2010 rubyripper & nedenstående oversættere.
 # This file is distributed under the same license as the rubyripper package.
-# Joe Hansen <joedalton2@yahoo.dk>, 2010, 2018.
+# Joe Hansen <joedalton2@yahoo.dk>, 2010, 2018, 2023.
 #
 # base directory -> startmappe (det sted hvor mapperne til rippet bliver oprettet
 # fra. Et bedre forslag?"
@@ -11,11 +11,11 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Rubyripper 0.7.0a1\n"
+"Project-Id-Version: Rubyripper 0.8.0rc3\n"
 "Report-Msgid-Bugs-To: bleskodev@ennumia.eu\n"
-"PO-Revision-Date: 2021-02-28 19:19+0100\n"
-"Last-Translator: BleskoDev <bleskodev@ennumia.eu>\n"
-"Language-Team: French <bleskodev@ennumia.eu>\n"
+"PO-Revision-Date: 2023-08-30 19:19+0100\n"
+"Last-Translator: Joe Hansen <joedalton2@yahoo.dk>\n"
+"Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -45,10 +45,10 @@ msgid "Change metadata"
 msgstr "Ændr metadata"
 
 msgid "Select the tracks to rip (default = all)"
-msgstr "Vælg numrene der skal rippes (standard = alle)"
+msgstr "Vælg numrene der skal udtrækkes (standard = alle)"
 
 msgid "Rip the disc!"
-msgstr "Rip disken!"
+msgstr "Udtræk disken!"
 
 msgid "Exit rubyripper..."
 msgstr "Afslut rubyripper ..."
@@ -67,7 +67,7 @@ msgstr "Løs venligst først de følgende konfigurationsfejl:"
 
 # engelsk fejl cancelled
 msgid "Rip is canceled, exiting..."
-msgstr "Rip er afbrudt, afslutter.."
+msgstr "Udtræk er afbrudt, afslutter ..."
 
 msgid "The output directory already exists. What would you like to do?"
 msgstr "Uddatamappen findes allerede. Hvad ønsker du at gøre?"
@@ -79,7 +79,7 @@ msgid "2) Overwrite the existing directory"
 msgstr "2) Overskriv eksisterende mappe"
 
 msgid "3) Cancel the rip and eject the disc"
-msgstr "3) Afbryd rippet og skub disken ud"
+msgstr "3) Afbryd udtrækket og skub disken ud"
 
 msgid "Please enter the number of your choice: "
 msgstr "Indtast venligst nummeret på dit valg: "
@@ -88,7 +88,7 @@ msgid "Open tray"
 msgstr "Åbn bakke"
 
 msgid "Ehh.. There shouldn't be anything else. WTF?"
-msgstr "Ehh.. Der skulle ikke være mere. Hvad sker der?"
+msgstr "Øøh ... Der skulle ikke være mere. Hvad sker der?"
 
 msgid "Secret modus = %s"
 msgstr "Hemmelig modus = %s"
@@ -106,7 +106,7 @@ msgid "Scan drive"
 msgstr "Skan drev"
 
 msgid "Rip cd now!"
-msgstr "Rip cd nu!"
+msgstr "Udtræk cd nu!"
 
 msgid "Disc info"
 msgstr "Diskinfo"
@@ -130,13 +130,13 @@ msgid "Change configuration settings."
 msgstr "Ændr konfigurationsopsætning."
 
 msgid "Skip questions and rip the disc."
-msgstr "Spring spørgsmål over og rip disken."
+msgstr "Spring spørgsmål over og udtræk disken."
 
 msgid "Provide a directory to stub disc queries."
 msgstr "Angiv en mappe til at gemme diskforespørgsler i."
 
 msgid "Exit after the disc is done ripping."
-msgstr "Afslut efter disken er færdig med ripning."
+msgstr "Afslut efter disken er færdig med udtrækning."
 
 msgid "Show this usage statement."
 msgstr "Vis denne brugserklæring."
@@ -151,7 +151,7 @@ msgid "Use config file "
 msgstr "Brug konfigurationsfil "
 
 msgid "AUDIO DISC FOUND"
-msgstr "LYDDISK FUNDET  "
+msgstr "LYDDISK FUNDET"
 
 msgid "Number of tracks: %s"
 msgstr "Antal numre: %s"
@@ -213,16 +213,16 @@ msgstr "nej"
 msgid "n"
 msgstr "n"
 
-#, fuzzy
 msgid ""
 "Please answer %s or %s. Try again.\n"
-msgstr "svar venligst ja eller nej"
+msgstr ""
+"Svar venligst %s eller %s. Prøv igen.\n"
 
 msgid ""
 "Please enter an integer value. Try again.\n"
 msgstr ""
+"Indtast venligst en heltalsværdi. Prøv igen.\n"
 
-#, fuzzy
 msgid ""
 "\n"
 "There are %s choices:\n"
@@ -230,7 +230,6 @@ msgstr ""
 "\n"
 "Der er %s valg:\n"
 
-#, fuzzy
 msgid ""
 "\n"
 "Which one do you prefer?"
@@ -242,7 +241,7 @@ msgid "RUBYRIPPER PREFERENCES"
 msgstr "RUBYRIPPERS INDSTILLINGER"
 
 msgid "Secure ripping"
-msgstr "Sikker ripning"
+msgstr "Sikker udtrækning"
 
 msgid "Toc analysis"
 msgstr "TOC-analyse"
@@ -263,7 +262,7 @@ msgid "SECURE RIPPING PREFERENCES"
 msgstr "SIKRE RUBYRIPPER-PRÆFERENCER"
 
 msgid "Ripping drive"
-msgstr "Ripningsdrev"
+msgstr "Udtræksdrev"
 
 msgid "Drive offset"
 msgstr "Drevforskydning"
@@ -290,7 +289,7 @@ msgid "Maximum trials"
 msgstr "Maksimalt antal forsøg"
 
 msgid "Eject disc after ripping %s"
-msgstr "Skub disk ud efter ripning %s"
+msgstr "Skub disk ud efter udtrækning %s"
 
 msgid "Only keep log when errors %s"
 msgstr "Bevar kun log når fejl opstår %s"
@@ -308,17 +307,16 @@ msgid "Create a cuesheet %s"
 msgstr "Opret et diskaftryk %s"
 
 msgid "Rip to single file %s"
-msgstr "Rip til en enkel fil %s"
+msgstr "Udtræk til en enkel fil %s"
 
 msgid "Rip hidden audio sectors %s"
-msgstr "Rip skjulte lydsektorer %s"
+msgstr "Udtræk skjulte lydsektorer %s"
 
 msgid "Mark as a hidden track when longer than"
 msgstr "Marker som skjult spor når længere end"
 
-#, fuzzy
 msgid "second(s)"
-msgstr "sekunder"
+msgstr "sekund(er)"
 
 msgid "Append or prepend audio"
 msgstr "Tilføj eller foranstil lyd"
@@ -353,13 +351,11 @@ msgstr "Vorbis %s"
 msgid "Oggenc options passed"
 msgstr "Oggenc-indstillinger sendt"
 
-#, fuzzy
 msgid "LAME mp3 %s"
-msgstr "Lame mp3 %s"
+msgstr "LAME mp3 %s"
 
-#, fuzzy
 msgid "LAME options passed"
-msgstr "FLAC-indstillinger sendt"
+msgstr "LAME-indstillinger sendt"
 
 msgid "Nero AAC %s"
 msgstr "Nero AAC %s"
@@ -367,21 +363,17 @@ msgstr "Nero AAC %s"
 msgid "Nero options passed"
 msgstr "Nero-indstillinger sendt"
 
-#, fuzzy
 msgid "Fraunhofer AAC %s"
-msgstr "Nero AAC %s"
+msgstr "Fraunhofer AAC %s"
 
-#, fuzzy
 msgid "Fraunhofer options passed"
-msgstr "Lame-indstillinger sendt"
+msgstr "Fraunhofer-indstillinger sendt"
 
-#, fuzzy
 msgid "WavPack %s"
-msgstr "Wavpack %s"
+msgstr "WavPack %s"
 
-#, fuzzy
 msgid "WavPack options passed"
-msgstr "Wavpack-indstillinger sendt"
+msgstr "WavPack-indstillinger sendt"
 
 msgid "Opus %s"
 msgstr "Opus %s"
@@ -390,7 +382,7 @@ msgid "Opus options passed"
 msgstr "Opus-indstillinger sendt"
 
 msgid "WAVE %s"
-msgstr ""
+msgstr "WAVE %s"
 
 msgid "Other codec %s"
 msgstr "Anden kodning %s"
@@ -516,7 +508,7 @@ msgid "Various artist file scheme"
 msgstr "Filskema for forskellige kunstnere"
 
 msgid "Single file rip file scheme"
-msgstr "Et filrip med filskema"
+msgstr "Et filudtræk med filskema"
 
 msgid "Replace spaces with underscores %s"
 msgstr "Erstat mellemrum med understregninger %s"
@@ -536,13 +528,12 @@ msgstr "Uddybende tilstand %s"
 msgid "Debug mode %s"
 msgstr "Fejlsøgningstilstand %s"
 
-#, fuzzy
 msgid ""
 "\n"
 "Current naming scheme: %s"
 msgstr ""
 "\n"
-"Aktuelt navngivningskema: %s"
+"Aktuelt navngivningsskema: %s"
 
 msgid "Codec"
 msgstr "Kodninger"
@@ -557,10 +548,10 @@ msgid "Example file name: "
 msgstr "Eksempelfilnavn: "
 
 msgid "It's not possible to select tracks for image rips"
-msgstr "Det er ikke muligt at vælge numre for aftrykrip"
+msgstr "Det er ikke muligt at vælge numre for aftryksudtræk"
 
 msgid "Please change your rip preferences first"
-msgstr "Ændr venligst dine rip-præferencer først"
+msgstr "Ændr venligst dine udtrækspræferencer først"
 
 msgid "TRACK SELECTION"
 msgstr "NUMMERMARKERING"
@@ -572,9 +563,8 @@ msgid "Back to main menu"
 msgstr "Tilbage til hovedmenu"
 
 msgid "ERROR: No audio tracks found!"
-msgstr "FEJL: Ingen lydspor fundet!"
+msgstr "FEJL: Ingen lydnumre fundet!"
 
-#, fuzzy
 msgid ""
 "\n"
 "ADVANCED TOC ANALYSIS (with cdrdao)\n"
@@ -582,15 +572,13 @@ msgstr ""
 "\n"
 "AVANCERET TOC-ANALYSE (med cdrdao)\n"
 
-#, fuzzy
 msgid ""
 "...please be patient, this may take a while\n"
 "\n"
 msgstr ""
-"...vær tålmodig, det kan godt tage et stykke tid\n"
+"... vær tålmodig, det kan godt tage et stykke tid\n"
 "\n"
 
-#, fuzzy
 msgid ""
 "No pregap, silence, pre-emphasis or data track detected\n"
 "\n"
@@ -598,19 +586,16 @@ msgstr ""
 "Ingen indledende mellemrum, stilhed eller foranstillet fremhævelse genkendt\n"
 "\n"
 
-#, fuzzy
 msgid ""
 "Silence detected for disc : %s sectors\n"
 msgstr ""
 "Stilhed registreret for disk : %s sektorer\n"
 
-#, fuzzy
 msgid ""
 "Pregap detected for track %s : %s sectors\n"
 msgstr ""
 "Indledende mellemrum registreret for nummer %s: %s sektorer\n"
 
-#, fuzzy
 msgid ""
 "Track %s is marked as a DATA track\n"
 msgstr ""
@@ -632,16 +617,22 @@ msgid ""
 "No read permission for drive %s!\n"
 "This is required to scan the disc."
 msgstr ""
+"Ingen læsningstilladelse for drev %s!\n"
+"Dette er krævet for at skanne disken."
 
 msgid ""
 "No write permission for drive %s!\n"
 "This is required to scan the disc."
 msgstr ""
+"Ingen skrivningstilladelse for drev %s!\n"
+"Dette er krævet for at skanne disken."
 
 msgid ""
 "No read + write permissions for drive %s!\n"
 "These are required to rip the disc."
 msgstr ""
+"Ingen læsnings-/skrivningstilladelse for drev %s!\n"
+"Dette er krævet for at udtrække disken."
 
 msgid "Please select at least one track."
 msgstr "Vælg venligst mindst et nummer."
@@ -652,14 +643,12 @@ msgstr "Vælg venligst mindst en kodning."
 msgid "No update function found in the user interface"
 msgstr "Ingen opdateringsfunktion fundet i brugerfladen"
 
-#, fuzzy
 msgid "%s is required, but not detected on your system!"
 msgstr "%s er krævet, men ikke fundet på dit system!"
 
 msgid "Please install cdrdao or disable cuesheet generation."
 msgstr "Installer venligst cdrdao eller deaktiver oprettelse af diskaftryk."
 
-#, fuzzy
 msgid ""
 "The program %s failed to execute correctly:\n"
 "%s"
@@ -667,7 +656,6 @@ msgstr ""
 "Programmet %s mislykkedes i sin afvikling:\n"
 "%s"
 
-#, fuzzy
 msgid ""
 "Can't create output directory!\n"
 "You have no writing access for directory %s"
@@ -684,7 +672,6 @@ msgstr "Skjult nummer"
 msgid "Unknown Artist"
 msgstr "Ukendt kunstner"
 
-#, fuzzy
 msgid ""
 "The directory %s already exists.\n"
 "\n"
@@ -692,12 +679,11 @@ msgid ""
 msgstr ""
 "Mappen %s findes allerede.\n"
 "\n"
-"Hvad ønsker du at rubyripper gør?"
+"Hvad ønsker du, at rubyripper gør?"
 
 msgid "Cancel rip"
-msgstr "Afbryd rip"
+msgstr "Afbryd udtræk"
 
-#, fuzzy
 msgid ""
 "Delete existing\n"
 "directory"
@@ -705,7 +691,6 @@ msgstr ""
 "Slet eksisterende\n"
 "mappe"
 
-#, fuzzy
 msgid ""
 "Auto rename\n"
 "directory"
@@ -713,7 +698,6 @@ msgstr ""
 "Automatisk omdøbe\n"
 "mappe"
 
-#, fuzzy
 msgid "Directory already exists..."
 msgstr "Mappe findes allerede ..."
 
@@ -726,7 +710,6 @@ msgstr "Fastlås diskinfo"
 msgid "Disc:"
 msgstr "Disk:"
 
-#, fuzzy
 msgid ""
 "Use this option to keep the disc info\n"
 "for albums that span multiple discs"
@@ -737,13 +720,11 @@ msgstr ""
 msgid "All"
 msgstr "Alle"
 
-#, fuzzy
 msgid "Track names \\(%s track(s)\\)"
-msgstr "Titler (%s numre)"
+msgstr "Titler \\(%s numre\\)"
 
-#, fuzzy
 msgid "Length \\(%s\\)"
-msgstr "Længde (%s)"
+msgstr "Længde <<(%s\\)"
 
 msgid "<b>Disc info</b>"
 msgstr "<b>Diskinfo</b>"
@@ -771,61 +752,50 @@ msgstr ""
 "Musicbrainz-serveren har flere resultater.\n"
 "Hvilken foretrækker du?"
 
-#, fuzzy
 msgid "Multiple releases found..."
-msgstr "Flere resultater fundet..."
+msgstr "Flere udgivelser fundet ..."
 
 msgid "Title:"
-msgstr ""
+msgstr "Titel:"
 
 msgid "Date:"
-msgstr ""
+msgstr "Dato:"
 
-#, fuzzy
 msgid "Description:"
-msgstr "n"
+msgstr "Beskrivelse:"
 
-#, fuzzy
 msgid "Country:"
-msgstr "j"
+msgstr "Land:"
 
-#, fuzzy
 msgid "Packaging:"
-msgstr "n"
+msgstr "Pakning:"
 
 msgid "Status:"
-msgstr ""
+msgstr "Status:"
 
 msgid "Barcode:"
-msgstr ""
+msgstr "Stregkode:"
 
-#, fuzzy
 msgid "Unknown title"
-msgstr "Ukendt"
+msgstr "Ukendt titel"
 
-#, fuzzy
 msgid "Unknown date"
-msgstr "Ukendt"
+msgstr "Ukendt dato"
 
-#, fuzzy
 msgid "Unknown description"
-msgstr "Ukendt"
+msgstr "Ukendt beskrivelse"
 
-#, fuzzy
 msgid "Unknown country code"
-msgstr "Ukendt"
+msgstr "Ukendt landekode"
 
-#, fuzzy
 msgid "Unknown packaging type"
-msgstr "Ukendt"
+msgstr "Ukendt pakketype"
 
-#, fuzzy
 msgid "Unknown status"
-msgstr "Ukendt"
+msgstr "Ukendt status"
 
-#, fuzzy
 msgid "Unknown barcode"
-msgstr "Ukendt"
+msgstr "Ukendt stregkode"
 
 msgid "Cdrom device:"
 msgstr "Cd-rom-enhed:"
@@ -836,7 +806,6 @@ msgstr "Cd-rom-forskydning:"
 msgid "List with offsets"
 msgstr "Liste med forskydninger"
 
-#, fuzzy
 msgid ""
 "A website which lists the offset for most drives.\n"
 "Your drivename can be found in each logfile."
@@ -847,7 +816,6 @@ msgstr ""
 msgid "Pad missing samples with zero's"
 msgstr "Pad mangler prøver med nul'er"
 
-#, fuzzy
 msgid ""
 "Cdparanoia can\\'t handle offsets \\\n"
 "larger than 580 for \n"
@@ -859,11 +827,14 @@ msgid ""
 "\\\n"
 "It is recommended to enable this option."
 msgstr ""
-"Cdparanoia kan ikke håndtere forskyndinger større end 580 \n"
-" for første (negative forskydning) og sidste (positive\n"
-"forskydning) nummer. Denne indstilling udfylder\n"
-"resten med tomme prøver. Hvis deaktiveret vil filen\n"
-"ikke have korrekt størrelse. Det anbefales at aktivere denne indstilling."
+"Cdparanoia kan ikke\\ håndtere forskyndinger\\\n"
+"større end 580 for \n"
+"første (negative forskydning) og sidste (positive \\\n"
+"forskydning) nummer.\n"
+"Denne indstilling udfylder resten med tomme prøver.\n"
+"Hvis deaktiveret vil filen ikke have korrekt størrelse.\n"
+"\\\n"
+"Det anbefales at aktivere denne indstilling."
 
 msgid "Cdrom device"
 msgstr "Cd-rom-enhed"
@@ -904,12 +875,11 @@ msgstr "Rip skjulte lydsektorer"
 msgid "Uncheck this if cdparanoia crashes with your ripping drive."
 msgstr "Fjern afkrydsning hvis cdparanoia går ned med dit ripningsdrev."
 
-#, fuzzy
 msgid ""
 "A hidden track will rip to a seperate file if used in track modus.\n"
 "If it's smaller the sectors will be prepended to the first track."
 msgstr ""
-"Et skjult spor vil rippe til en separat fil hvis brugt i spormodus.\n"
+"Et skjult spor vil udtrække til en separat fil hvis brugt i spormodus.\n"
 "Hvis det er mindre, vil sektorene blive foranstillet det første spor."
 
 msgid "Audio sectors before track 1"
@@ -920,7 +890,7 @@ msgstr "Opret cuesheet (diskaftryk)"
 
 # engelsk fejl her er CD med stort
 msgid "Rip CD to single file"
-msgstr "Rip cd til en enkel fil"
+msgstr "Udtræk cd til en enkel fil"
 
 msgid "Advanced Toc analysis"
 msgstr "Avanceret Toc-analyse"
@@ -955,7 +925,6 @@ msgstr "Aktive lydkodninger"
 msgid "No settings available"
 msgstr "Ingen indstillinger tilgængelige"
 
-#, fuzzy
 msgid ""
 "%a=artist %g=genre %t=track name %f=codec %b=album \n"
 "%y=year %n=track %va=various artist %o=output file %i=input file"
@@ -978,7 +947,6 @@ msgstr "Standardiser ikke lydstyrke"
 msgid "Use replaygain on audio files"
 msgstr "Brug replaygain på lydfiler"
 
-#, fuzzy
 msgid "Use normalize on WAVE files"
 msgstr "Brug normalisering på wav-filer"
 
@@ -1090,27 +1058,24 @@ msgstr "Fejlsøgningstilstand"
 msgid "Debug options"
 msgstr "Fejlsøgningsindstillinger"
 
-#, fuzzy
 msgid "Encoding progress %s %%"
-msgstr "Status for kodning %s %"
+msgstr "Status for kodning %s %%"
 
-#, fuzzy
 msgid "Ripping progress %s %%"
-msgstr "Status for ripning %s %"
+msgstr "Status for udtræk %s %%"
 
 msgid "<b>Ripping status</b>"
-msgstr "<b>Ripningsstatus</b>"
+msgstr "<b>Udtræksstatus</b>"
 
 msgid "Not yet started (0%)"
 msgstr "Ikke startet endnu (0 %)"
 
 msgid "...Scanning drive %s for an audio disc."
-msgstr "...Skanner drev %s for en lyddisk."
+msgstr "... Skanner drev %s for en lyddisk."
 
 msgid "Welcome to rubyripper %s."
-msgstr "Velkommne til rubyripper %s."
+msgstr "Velkommen til rubyripper %s."
 
-#, fuzzy
 msgid ""
 "No disc found in %s!\n"
 "Please insert a disc and push 'Scan drive'.\n"
@@ -1129,7 +1094,6 @@ msgid "Closing tray of the drive."
 msgstr "Åbner bakke på drevet."
 
 # engelsk fejl manglende punktum
-#, fuzzy
 msgid ""
 "Insert an audio-disc and press 'Close tray'.\n"
 "The drive will automatically be scanned for a disc.\n"
@@ -1144,20 +1108,18 @@ msgstr ""
 msgid "The eject utility is not found on your system!"
 msgstr "Udskubningsværktøjet er ikke fundet på dit system!"
 
-#, fuzzy
 msgid ""
 "The rip has succesfully finished.\n"
 "A short summary is shown below."
 msgstr ""
-"Rippet er afsluttet.\n"
+"Udtrækket er afsluttet.\n"
 "Et kort sammendrag er vist nedenfor."
 
-#, fuzzy
 msgid ""
 "The rip had some problems.\n"
 "A short summary is shown below."
 msgstr ""
-"Rippet havde nogle problemer.\n"
+"Udtrækket havde nogle problemer.\n"
 "Et kort sammendrag er vist nedenfor."
 
 msgid "Open log file"
@@ -1167,26 +1129,22 @@ msgid "Open directory"
 msgstr "Åbn mappe"
 
 msgid "Ripping and encoding is finished"
-msgstr "Ripning og kodning er afsluttet"
+msgstr "Udtrækning og kodning er afsluttet"
 
 # engelsk fejl mellemrum?
-#, fuzzy
 msgid ""
 "Artist : %s\n"
 "Album: %s\n"
 msgstr ""
-"Kunster: %s\n"
+"Kunstner: %s\n"
 "Album: %s\n"
 
 msgid "All chunks matched!"
-msgstr ""
+msgstr "Alle dele matchede!"
 
-#, fuzzy
 msgid "Corrected all sector mismatches! (%s matches found for each chunk)"
-msgstr ""
-"Fejl rettet, %s match fundet for hvert stykke :)\n"
+msgstr "Rettede alle sektorfejl! (%s match fundet for hver del)"
 
-#, fuzzy
 msgid ""
 "Disc Image\n"
 "\n"
@@ -1194,39 +1152,35 @@ msgstr ""
 "Diskaftryk\n"
 "\n"
 
-#, fuzzy
 msgid ""
 "Track %2d\n"
 "\n"
 msgstr ""
-"Nummer %s2d\n"
+"Nummer %2d\n"
 "\n"
 
-#, fuzzy
 msgid ""
 "File name %s\n"
 msgstr ""
 "Filnavn %s\n"
 
-#, fuzzy
 msgid ""
 "Trial %s: %s seconds (%sx)\n"
 msgstr ""
 "Forsøg %s: %s sekunder (%sx)\n"
 
 msgid "Peak level %.1f %%"
-msgstr ""
+msgstr "Topniveau %.1f %%"
 
 msgid "Trial %s (Copy) CRC %s"
-msgstr ""
+msgstr "Forsøg %s (kopi) CRC %s"
 
 msgid "Trial %s (Test) CRC %s"
-msgstr ""
+msgstr "Forsøg %s (test) CRC %s"
 
 msgid "Corrected CRC %s"
-msgstr ""
+msgstr "Rettede CRC %s"
 
-#, fuzzy
 msgid ""
 "Copy MD5: %s\n"
 "\n"
@@ -1234,7 +1188,6 @@ msgstr ""
 "Kopier MD5: %s\n"
 "\n"
 
-#, fuzzy
 msgid ""
 "\n"
 "WARNING: ENCODING ERRORS WERE DETECTED\n"
@@ -1242,26 +1195,23 @@ msgstr ""
 "\n"
 "ADVARSEL: KODNINGSFEJL BLEV REGISTRERET\n"
 
-#, fuzzy
 msgid ""
 "\n"
 "RIPPING SUMMARY\n"
 "\n"
 msgstr ""
 "\n"
-"RIPNINGSSAMMENDRAG\n"
+"UDTRÆKSSAMMENDRAG\n"
 "\n"
 
-#, fuzzy
 msgid ""
 "All chunks were tried to match at least %s times.\n"
 msgstr ""
-"Alle stykker blev forsøgt sammenlignet mindst %s gange.\n"
+"Alle dele blev forsøgt sammenlignet mindst %s gange.\n"
 
 msgid "Chunks that differed after %s trials,"
-msgstr "Stykker som var forskellige efter %s forsøg,"
+msgstr "Dele som var forskellige efter %s forsøg,"
 
-#, fuzzy
 msgid ""
 "\n"
 "were tried to match %s times.\n"
@@ -1272,7 +1222,6 @@ msgstr ""
 msgid "No errors occurred"
 msgstr "Der opstod ingen fejl"
 
-#, fuzzy
 msgid ""
 "None of the tracks gave any problems\n"
 msgstr ""
@@ -1281,13 +1230,11 @@ msgstr ""
 msgid "There were errors which could not be corrected"
 msgstr "Der var fejl, der ikke kunne rettes"
 
-#, fuzzy
 msgid ""
 "Some track(s) could NOT be corrected within the maximum amount of trials\n"
 msgstr ""
 "Nogle numre kunne IKKE tilrettes indenfor det maksimale antal forsøg\n"
 
-#, fuzzy
 msgid ""
 "Track %s could NOT be corrected completely\n"
 msgstr ""
@@ -1297,7 +1244,6 @@ msgid "There were errors which required correction"
 msgstr "Der var fejl som krævede korrektion"
 
 # engelsk fejl , but
-#, fuzzy
 msgid ""
 "Some track(s) needed correction,but could\n"
 "be corrected within the maximum amount of trials\n"
@@ -1305,19 +1251,17 @@ msgstr ""
 "Nogle numre krævede korrektion, men kunne\n"
 "tilrettes indenfor det maksimale antal forsøg\n"
 
-#, fuzzy
 msgid ""
 "There were errors during encoding\n"
 msgstr ""
-"Der opstod fejl under kodning\n"
+"Der opstod fejl under kodningen\n"
 
-#, fuzzy
 msgid ""
 "The exact positions of the suspicious chunks\n"
 "can be found in the ripping log\n"
 msgstr ""
-"Den præcise placering af de mistænksomme stykker\n"
-"kan ses i ripningsloggen\n"
+"Den præcise placering af de mistænksomme dele\n"
+"kan ses i udtræksloggen\n"
 
 msgid "Unknown"
 msgstr "Ukendt"
@@ -1325,7 +1269,6 @@ msgstr "Ukendt"
 msgid "Track %s"
 msgstr "Nummer %s"
 
-#, fuzzy
 msgid ""
 "\n"
 "Website:"
@@ -1333,13 +1276,12 @@ msgstr ""
 "\n"
 "Hjemmeside:"
 
-#, fuzzy
 msgid ""
 "Rubyripper extraction logfile from:\n"
 "%s\n"
 "\n"
 msgstr ""
-"Rubyripper-udtrækningslogfil fra:\n"
+"Rubyripper-udtrækslogfil fra:\n"
 "%s\n"
 "\n"
 
@@ -1370,7 +1312,6 @@ msgstr "Overlæst i Lead-In og Lead-Out"
 msgid "No"
 msgstr "Nej"
 
-#, fuzzy
 msgid ""
 "Fill up missing offset samples with silence : %s\n"
 msgstr ""
@@ -1382,7 +1323,6 @@ msgstr "Ja"
 msgid "Null samples used in CRC calculations"
 msgstr "Ingen prøver brugt i CRC-beregninger"
 
-#, fuzzy
 msgid ""
 "Used output encoder : %s\n"
 msgstr ""
@@ -1400,7 +1340,6 @@ msgstr "Brugerdefineret koder"
 msgid "Command line"
 msgstr "Kommandolinje"
 
-#, fuzzy
 msgid ""
 "TOC of the extracted CD\n"
 "\n"
@@ -1421,7 +1360,7 @@ msgid "End sector"
 msgstr "Slutsektor"
 
 msgid "Not enough disk space left! Rip aborted"
-msgstr "Ikke nok diskplads tilbage! Rip afbrudt"
+msgstr "Ikke nok diskplads tilbage! Udtræk afbrudt"
 
 msgid "Copy OK"
 msgstr "Kopi er o.k."
@@ -1432,12 +1371,11 @@ msgstr "Sektorer kan ikke læses på følgende tidspunkter:"
 msgid "Copy finished"
 msgstr "Kopi er færdig"
 
-#, fuzzy
 msgid ""
 "Cdparanoia doesn't output WAVE files.\n"
 "Check your settings please."
 msgstr ""
-"Cdparanoia laver ikke wav-filer.\n"
+"Cdparanoia laver ikke WAVE-filer.\n"
 "Tjek venligst din opsætning."
 
 msgid "File size is not correct! Trying another time"
@@ -1446,7 +1384,6 @@ msgstr "Filstørrelse er ikke korrekt! Forsøger igen"
 msgid "Sector mismatches at the following times, requiring extra trials:"
 msgstr "Sektor var forskellig på de følgende tidspunkter, kræver ekstra forsøg:"
 
-#, fuzzy
 msgid "Drive has been spinning for more than 30 minutes."
 msgstr "Drevet har rotereret i mere end 30 minutter."
 
@@ -1459,9 +1396,8 @@ msgstr "ADVARSEL: Intet skub ud-værktøj fundet!"
 msgid "Rubyripper can't be used without cdparanoia!"
 msgstr "Rubyripper kan ikke bruges uden cdparanoia!"
 
-#, fuzzy
 msgid "You won't be able to use the gtk3 interface."
-msgstr "Du vil ikke kunne bruge gtk2-grænsefladen."
+msgstr "Du vil ikke kunne bruge gtk3-grænsefladen."
 
 msgid "You won't be able to use translations."
 msgstr "Du vil ikke kunne bruge oversættelser."
@@ -1485,20 +1421,17 @@ msgstr "Du vil ikke kunne kode i FLAC."
 msgid "You won't be able to encode in vorbis."
 msgstr "Du vil ikke kunne kode i Vorbis."
 
-#, fuzzy
 msgid "You won't be able to encode in LAME mp3."
-msgstr "Du vil ikke kunnde kode i Lame mp3."
+msgstr "Du vil ikke kunnde kode i LAME mp3."
 
-#, fuzzy
 msgid "You won't be able to replaygain WAVE files."
-msgstr "Du vil ikke kunne replaygain wav-filer."
+msgstr "Du vil ikke kunne replaygain WAVE-filer."
 
 msgid "You won't be able to replaygain vorbis files."
 msgstr "Du vil ikke kunne replaygain vorbis-filer."
 
-#, fuzzy
 msgid "You won't be able to replaygain LAME mp3 files."
-msgstr "Du vil ikke kunne replaygain Lame mp3-filer."
+msgstr "Du vil ikke kunne replaygain LAME mp3-filer."
 
 msgid "You won't be able to normalize audio files."
 msgstr "Du vil ikke kunne normalisere lydfiler."
@@ -1512,7 +1445,6 @@ msgstr "Cd-info hjælper med at registrere dataspor."
 msgid "Show rights in case of problems"
 msgstr "Vis rettigheder i tilfælde af problemer"
 
-#, fuzzy
 msgid ""
 "\n"
 "\n"
@@ -1524,7 +1456,6 @@ msgstr ""
 "KONTROLLERER TVUNGNE AFHÆNGIGHEDER\n"
 "\n"
 
-#, fuzzy
 msgid ""
 "\n"
 "CHECKING OPTIONAL DEPENDENCIES\n"
