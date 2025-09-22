@@ -147,6 +147,7 @@ private
  maximum" : @prefs.maxTries]
     @out.puts ' 8) ' + _("Eject disc after ripping %s") % [showBool(@prefs.eject)]
     @out.puts ' 9) ' + _("Only keep log when errors %s") % [showBool(@prefs.noLog)]
+    @out.puts '10) ' + _("Calculate peak level %s") % [showBool(@prefs.calculatePeakLevel)]
     @out.puts '99) ' + _("Back to settings main menu")
     @out.puts ""
     @int.get("Please type the number of the setting you wish to change", 99)
@@ -167,6 +168,7 @@ private
       when 7 then @prefs.maxTries = @int.get(_("Maximum trials"), 5)
       when 8 then switchBool('eject')
       when 9 then switchBool('noLog')
+      when 10 then switchBool('calculatePeakLevel')
     else noValidChoiceMessage(choice)
     end
     loopSubMenuRipping() unless choice == 99

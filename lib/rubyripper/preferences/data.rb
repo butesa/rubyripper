@@ -62,6 +62,9 @@ module Preferences
     # Throw away the log if no errors are found
     attr_accessor :noLog
 
+    # Calculate peak level
+    attr_accessor :calculatePeakLevel
+
     # TOC ANALYSIS PREFERENCES
     # Create a cuesheet
     attr_accessor :createCue

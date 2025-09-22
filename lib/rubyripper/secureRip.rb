@@ -430,7 +430,7 @@ is #{@disc.getFileSize(track)} bytes." if @prefs.debug
     @digest = hash.md5
     @crc32 = hash.crc32
 
-    if trial == 1
+    if @prefs.calculatePeakLevel && trial == 1
       @calcPeakLevel ||= CalcPeakLevel.new()
       @peakLevel = @calcPeakLevel.getPeakLevel(filename)
     end

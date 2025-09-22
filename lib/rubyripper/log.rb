@@ -175,7 +175,7 @@ class Log
 
   def finishTrack(level, crcs, status, correctedcrc=nil)
     add("\n")
-    add("     #{_("Peak level %.1f %%") % [level]}\n")
+    add("     #{_("Peak level %.1f %%") % [level]}\n") if @prefs.calculatePeakLevel
     crcs.each_index do |i|
       if i == 0
         add("     #{_("Trial %s (Copy) CRC %s") % [i + 1, crcs[i]]}\n")

@@ -102,6 +102,7 @@ class GtkPreferences
     @ripEntry.text = @prefs.rippersettings
     @eject.active = @prefs.eject
     @noLog.active = @prefs.noLog
+    @calculatePeakLevel.active = @prefs.calculatePeakLevel
 #toc settings
     @createCue.active = @prefs.createCue
     @image.active = @prefs.image
@@ -169,6 +170,7 @@ class GtkPreferences
     @prefs.rippersettings = @ripEntry.text
     @prefs.eject = @eject.active?
     @prefs.noLog = @noLog.active?
+    @prefs.calculatePeakLevel = @calculatePeakLevel.active?
 #toc settings
     @prefs.createCue = @createCue.active?
     @prefs.image = @image.active?
@@ -320,12 +322,14 @@ It is recommended to enable this option.")
     @rip_label = Gtk::Label.new(_("Pass cdparanoia options:")) ; @rip_label.set_alignment(0.0, 0.5)
     @eject= Gtk::CheckButton.new(_('Eject cd when finished'))
     @noLog = Gtk::CheckButton.new(_('Only keep logfile if correction is needed'))
+    @calculatePeakLevel = Gtk::CheckButton.new(_('Calculate peak level'))
     @ripEntry= Gtk::Entry.new ; @ripEntry.width_request = 120
 #pack objects
     @table60.attach(@rip_label, 0, 1, 0, 1, Gtk::AttachOptions::FILL, Gtk::AttachOptions::SHRINK, 0, 0)
     @table60.attach(@ripEntry, 1, 2, 0, 1, Gtk::AttachOptions::SHRINK, Gtk::AttachOptions::SHRINK, 0, 0)
     @table60.attach(@eject, 0, 2, 1, 2, Gtk::AttachOptions::FILL, Gtk::AttachOptions::SHRINK, 0, 0)
     @table60.attach(@noLog, 0, 2, 2, 3, Gtk::AttachOptions::FILL|Gtk::AttachOptions::SHRINK, Gtk::AttachOptions::SHRINK, 0, 0)
+    @table60.attach(@calculatePeakLevel, 0, 2, 3, 4, Gtk::AttachOptions::FILL|Gtk::AttachOptions::SHRINK, Gtk::AttachOptions::SHRINK, 0, 0)
     @frame60 = newFrame(_('Ripping related'), child=@table60)
 #pack all frames into a single page
     @page1 = Gtk::Box.new(:vertical) #One VBox to rule them all
