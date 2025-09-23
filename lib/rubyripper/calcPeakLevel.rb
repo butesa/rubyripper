@@ -18,21 +18,23 @@
 require 'rubyripper/system/dependency'
 require 'rubyripper/system/execute'
 require 'rubyripper/modules/audioCalculations'
+require 'rubyripper/additionalLog'
 
 # This class calculates the loudness of the file
 class CalcPeakLevel
   include AudioCalculations
   
-  def initialize(exec=nil, deps=nil, prefs=nil)
+  def initialize(log, exec=nil, deps=nil, prefs=nil)
+    @log = log
     @exec = exec ? exec : Execute.new()
     @deps = deps ? deps : Dependency.instance()
     @prefs = prefs ? prefs : Preferences::Main.instance
   end
   
   # returns the percentage of the loudness compared to maximum
-  def getPeakLevel(filename)
+  def getPeakLevel(filename, identifier)
     if @deps.installed?('sox')
-      distanceToMax = getPeakLevelSox(filename)
+      distanceToMax = getPeakLevelSox(filename, identifier)
       getPercentage(distanceToMax)
     else
       slowManualCalculation(filename)
@@ -43,8 +45,11 @@ class CalcPeakLevel
   
   # return the (negative) number from the overall sound
   # example line is "Pk lev dB      -0.40     -0.40     -0.45"
-  def getPeakLevelSox(filename)
-    @exec.launch("sox \"#{filename}\" -n stats", file=false, noTranslation=true).each do |line|
+  def getPeakLevelSox(filename, identifier)
+    logItem = AdditionalLog.new("sox_stats_#{identifier}.log")
+    result = @exec.launch("sox \"#{filename}\" -n stats", log=logItem, noTranslations=true)
+    @log.writeAdditionalLog(logItem) if @prefs.logAnalysis
+    result.each do |line|
       return line.split()[3].to_f if line[0..8] == "Pk lev dB"
     end
   end

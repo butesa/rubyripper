@@ -38,7 +38,7 @@ attr_reader :status
 
   # return output for command
   # clear the file if it exists before the program runs
-  def launch(command, filename=false, noTranslations=nil)
+  def launch(command, log=nil, noTranslations=nil, filename=false)
     return true if command.empty?
     program = command.split[0]
     command = "LC_ALL=C; #{command}" if noTranslations
@@ -66,6 +66,14 @@ attr_reader :status
     else
       puts Errors.binaryNotFound(program)
       output = nil
+    end
+    
+    if log
+      logContent = Array.new
+      log.content = \
+        "Command: #{command}\n" + \
+        "State: #{(output.nil? ? 'Error' : 'Ok')}\n\n" + \
+        output.join()
     end
 
     if    output.nil?   then output = [] # Sentinel for error

@@ -135,7 +135,7 @@ class SecureRip
 is #{@disc.getFileSize(track)} bytes." if @prefs.debug
 
     if @deps.installed?('df')
-      output = @exec.launch("df \"#{@fileScheme.getDir()}\"", filename=false, noTranslations=true)
+      output = @exec.launch("df \"#{@fileScheme.getDir()}\"", log=nil, noTranslations=true)
       freeDiskSpace = output[1].split()[3].to_i
       puts "DEBUG: Free disk space is #{freeDiskSpace} MB" if @prefs.debug
       if @disc.getFileSize(track) > freeDiskSpace*1000
@@ -431,8 +431,8 @@ is #{@disc.getFileSize(track)} bytes." if @prefs.debug
     @crc32 = hash.crc32
 
     if trial == 1
-      @calcPeakLevel ||= CalcPeakLevel.new()
-      @peakLevel = @calcPeakLevel.getPeakLevel(filename)
+      @calcPeakLevel ||= CalcPeakLevel.new(@log)
+      @peakLevel = @calcPeakLevel.getPeakLevel(filename, sprintf('%02d', track))
     end
 
     return @crc32

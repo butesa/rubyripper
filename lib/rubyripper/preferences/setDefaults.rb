@@ -45,6 +45,8 @@ module Preferences
       @data.maxTries = 7
       @data.eject = true
       @data.noLog = false
+      @data.logPerCodec = true
+      @data.logAnalysis = false
     end
 
     def setTocAnalysisDefaults

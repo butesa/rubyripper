@@ -35,7 +35,8 @@ class ScanDiscCdinfo
   
   # * cdrom = a string with the location of the drive
   # * testRead = a string with output of cd-info for unit testing purposes
-  def initialize(execute=nil, prefs=nil)
+  def initialize(disc, execute=nil, prefs=nil)
+    @disc = disc
     @exec = execute ? execute : Execute.new() 
     @prefs = prefs ? prefs : Preferences::Main.instance
     
@@ -46,7 +47,7 @@ class ScanDiscCdinfo
   # scan the contents of the disc
   def scan
     return true if @status == 'ok'
-    query = @exec.launch("cd-info -C #{@prefs.cdrom} -A --no-cddb")
+    query = @exec.launch("cd-info -C #{@prefs.cdrom} -A --no-cddb", log=@disc.createLog('cd-info.log'))
 
     if isValidQuery(query)
       @status = 'ok'

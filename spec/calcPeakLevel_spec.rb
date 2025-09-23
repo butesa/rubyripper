@@ -20,10 +20,11 @@ require 'rubyripper/calcPeakLevel'
 # maximum volume for 16-bit audio is 96 decibel
 describe CalcPeakLevel do
   
+  let(:log) {double{'Log'}.as_null_object}
   let (:exec) {double('Execute').as_null_object}
   let (:deps) {double('Dependeny').as_null_object}
   let (:prefs) {double('Preferences::Main').as_null_object}
-  let (:calc) {CalcPeakLevel.new(exec, deps, prefs)}
+  let (:calc) {CalcPeakLevel.new(log, exec, deps, prefs)}
    
   context "Given sox is installed" do
     before(:each) do
@@ -33,14 +34,14 @@ describe CalcPeakLevel do
     # calculation is (96 + sox-level) / 96 * 100
     it "should report 93.75 percent if the peak level db from sox is -6.00" do
       sox_output = ["Pk lev dB      -6.00     -6.00     -6.45"]
-      expect(exec).to receive(:launch).with("sox \"filename\" -n stats", false, true).and_return sox_output      
-      expect(calc.getPeakLevel('filename')).to eq('93.75')
+      expect(exec).to receive(:launch).with("sox \"filename\" -n stats", nil, true).and_return sox_output
+      expect(calc.getPeakLevel('filename', '001')).to eq('93.75')
     end
     
     it "should report 100% if the peak level db from sox is 0" do
       sox_output = ["Pk lev dB       0.00      0.00      0.00", 'blabla']
-      expect(exec).to receive(:launch).with("sox \"filename\" -n stats", false, true).and_return sox_output      
-      expect(calc.getPeakLevel('filename')).to eq('100.00')
+      expect(exec).to receive(:launch).with("sox \"filename\" -n stats", nil, true).and_return sox_output
+      expect(calc.getPeakLevel('filename', '001')).to eq('100.00')
     end
   end
 end

@@ -33,7 +33,8 @@ class ScanDiscCdcontrol
 
   # * cdrom = a string with the location of the drive
   # * testRead = a string with output of cdcontrol for unit testing purposes
-  def initialize(execute=nil, prefs=nil)
+  def initialize(disc, execute=nil, prefs=nil)
+    @disc = disc
     @prefs = prefs ? prefs : Preferences::Main.instance
     @exec = execute ? execute : Execute.new()
 
@@ -44,7 +45,7 @@ class ScanDiscCdcontrol
   # scan the contents of the disc
   def scan
     return true if @status == 'ok'
-    query = @exec.launch("cdcontrol -f #{@prefs.cdrom} info")
+    query = @exec.launch("cdcontrol -f #{@prefs.cdrom} info", log=@disc.createLog('cdcontrol.log'))
 
     if isValidQuery(query)
       @status = 'ok'

@@ -62,6 +62,12 @@ module Preferences
     # Throw away the log if no errors are found
     attr_accessor :noLog
 
+    # Save a copy of the log for each codec
+    attr_accessor :logPerCodec
+
+    # Log output of analysis commands
+    attr_accessor :logAnalysis
+
     # TOC ANALYSIS PREFERENCES
     # Create a cuesheet
     attr_accessor :createCue

@@ -19,9 +19,10 @@ require 'rubyripper/disc/scanDiscCdinfo'
 
 describe ScanDiscCdinfo do
 
+  let(:disc) {double{'Disc'}.as_null_object}
   let(:prefs) {double('Preferences').as_null_object}
   let(:exec) {double('Execute').as_null_object}
-  let(:scan) {ScanDiscCdinfo.new(exec, prefs)}
+  let(:scan) {ScanDiscCdinfo.new(disc, exec, prefs)}
 
   before(:each) do
     expect(prefs).to receive(:cdrom).at_least(:once).and_return('/dev/cdrom')

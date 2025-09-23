@@ -25,10 +25,11 @@ describe ScanDiscCdparanoia do
     allow(exec).to receive(:launch).with(command).and_return reply
   end
 
+  let(:discdata) {double{'Disc'}.as_null_object}
   let(:exec) {double('Execute').as_null_object}
   let(:perm) {double('PermissionDrive').as_null_object}
   let(:prefs) {double('Preferences').as_null_object}
-  let(:disc) {ScanDiscCdparanoia.new(exec, perm, prefs)}
+  let(:disc) {ScanDiscCdparanoia.new(discdata, exec, perm, prefs)}
 
   context "Before scanning any disc" do
     it "shouldn't set default values" do
