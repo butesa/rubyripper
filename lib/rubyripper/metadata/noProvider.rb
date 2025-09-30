@@ -19,6 +19,7 @@
 require 'rubyripper/metadata/data'
 require 'rubyripper/metadata/freedb/freedbRecordGenerator'
 require 'rubyripper/metadata/freedb/saveFreedbRecord'
+require 'rubyripper/disc/scanDiscCdinfo'
 
 # This class is a 'fake' provider (used when all other providers have failed).
 # It simply fills the  metadata's tracklist with default track names.
@@ -26,18 +27,58 @@ require 'rubyripper/metadata/freedb/saveFreedbRecord'
 class NoProvider
   attr_reader :status
 
-  def initialize(disc, metadata=nil, generator=nil, save=nil)
+  def initialize(disc, metadata=nil, generator=nil, save=nil, prefs=nil)
     @disc = disc
     @md = metadata ? metadata : Metadata::Data.new()
     @generator = generator ? generator : FreedbRecordGenerator.new()
     @save = save ? save : SaveFreedbRecord.new()
+    @prefs = prefs ? prefs : Preferences::Main.instance
+    
+    @cdtext = nil
+    if @prefs.useCdText
+      # TODO: Do not use class check
+      if @disc.advancedTocScanner.is_a?(ScanDiscCdinfo)
+        @cdtext = @disc.advancedTocScanner
+      else
+        puts 'cd-info is not found on your system. Cd text fallback is not available'
+      end
+    end
   end
 
   # get metadata for the disc
   def get()
-    # generate default track list (using default track names)
-    (1..@disc.audiotracks).each do |track|
-      @md.setTrackname(track, @md.trackname(track))
+    if @cdtext
+      # use the cd text of the disc
+      @cdtext.scan
+      
+      @md.album = @cdtext.album if @cdtext.album
+      @md.artist = @cdtext.artist if @cdtext.artist
+      
+      # check for various artists
+      various = false
+      (1..@disc.audiotracks).each do |track|
+        trackArtist = @cdtext.getVarArtist(track)
+        if trackArtist && trackArtist != @md.artist
+          various = true 
+          break
+        end
+      end
+      
+      (1..@disc.audiotracks).each do |track|
+        trackname = @cdtext.getTrackname(track)
+        # default track name as fallback
+        @md.setTrackname(track, trackname ? trackname : @md.trackname(track))
+        
+        if various
+          artist = @cdtext.getVarArtist(track)
+          @md.setVarArtist(track, artist ? artist : @md.artist)
+        end
+      end
+    else
+      # generate default track list (using default track names)
+      (1..@disc.audiotracks).each do |track|
+        @md.setTrackname(track, @md.trackname(track))
+      end
     end
     @status = 'ok'
   end

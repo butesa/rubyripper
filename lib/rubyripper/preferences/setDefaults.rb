@@ -95,6 +95,7 @@ module Preferences
       @data.preferMusicBrainzCountries = 'US,UK,XW,XE,JP'
       @data.preferMusicBrainzDate = 'earlier'
       @data.useEarliestDate = true
+      @data.useCdText = false
     end
 
     def setOtherDefaults
