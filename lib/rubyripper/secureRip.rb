@@ -383,7 +383,9 @@ is #{@disc.getFileSize(track)} bytes." if @prefs.debug
 
     # What start/length do we expect?
     # Correct for whole frames if necessary (cdparanoia doesn't do this)
-    start = @disc.getStartSector(track) + @prefs.offset / SAMPLES_A_FRAME
+    offsetFullFrames = @prefs.offset / SAMPLES_A_FRAME
+    offsetRemainder = @prefs.offset - offsetFullFrames * SAMPLES_A_FRAME
+    start = @disc.getStartSector(track) + offsetFullFrames
     length = @disc.getLengthSector(track) - 1
 
     if start < 0 and @prefs.offset < 0
@@ -392,7 +394,7 @@ is #{@disc.getFileSize(track)} bytes." if @prefs.debug
       noOffset = true
     elsif @prefs.offset > 0 && (@prefs.image || track == @disc.audiotracks)
       # Adjust the start so that we never read into the lead-out.
-      start -= @prefs.offset / SAMPLES_A_FRAME
+      start -= offsetFullFrames
       noOffset = true
     end
     command += " [.#{start}]-[.#{length}]"
@@ -401,7 +403,7 @@ is #{@disc.getFileSize(track)} bytes." if @prefs.debug
     if @disc.multipleDriveSupport ; command += " -d #{@prefs.cdrom}" end
 
     if !noOffset
-      command += " -O #{@prefs.offset}"
+      command += " -O #{offsetRemainder}"
     end
     command += " \"#{@fileScheme.getTempFile(track, @trial)}\""
 
