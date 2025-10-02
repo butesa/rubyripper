@@ -43,6 +43,7 @@ attr_reader :status
     program = command.split[0]
     command = "LC_ALL=C; #{command}" if noTranslations
     puts "DEBUG: #{command}" if @prefs.debug
+    timeStarted = Time.now
 
     if @deps.installed?(program)
       File.delete(filename) if filename && File.exist?(filename)
@@ -67,12 +68,15 @@ attr_reader :status
       puts Errors.binaryNotFound(program)
       output = nil
     end
+
+    timeFinished = Time.now
     
     if log
       logContent = Array.new
       log.content = \
-        "Command: #{command}\n" + \
-        "State: #{(output.nil? ? 'Error' : 'Ok')}\n\n" + \
+        "Command:  #{command}\n" + \
+        "Duration: #{sprintf('%.3f', timeFinished - timeStarted)} seconds\n" + \
+        "State:    #{(output.nil? ? 'Error' : 'Ok')}\n\n" + \
         output.join()
     end
 
