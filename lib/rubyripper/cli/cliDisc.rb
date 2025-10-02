@@ -125,7 +125,7 @@ private
     @out.puts ' 2) ' + _('Edit the track info')
     @out.puts '99) ' + _("Return to main menu")
     @out.puts ""
-    @int.get("Please type the number of your choice", 99)
+    @int.get("Please type the number of your choice", 1, 99, 99)
   end
 
   def loopMainMenu()
@@ -146,7 +146,7 @@ private
     discInfo().each{|key, value| @out.puts "%2d) #{value}" % key}
     @out.puts "99) " + _("Back to metadata menu")
     @out.puts ""
-    @int.get("Please type the number of the data you wish to change", 99)
+    @int.get("Please type the number of the data you wish to change", 1, 99, 99)
   end
 
   def loopSubMenuDisc
@@ -175,7 +175,7 @@ private
     trackInfo().each{|key, value| @out.puts "%2d) #{value}" % key}
     @out.puts "99) " + _("Back to metadata menu")
     @out.puts ""
-    @int.get("Please type the number of the data you wish to change", 99)
+    @int.get("Please type the number of the data you wish to change", 1, 99, 99)
   end
 
   def loopSubMenuTracks()

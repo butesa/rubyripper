@@ -86,14 +86,8 @@ private
       @out.puts " #{index+1}) #{choices[index][1]}"
     end
 
-    choice = @int.get(_("\nWhich one do you prefer?"), 1)
-
-    if choice > choices.size
-      noValidChoiceMessage(choice)
-      multipleChoice(choices)
-    else
-      return choices[choice - 1][0]
-    end
+    choice = @int.get(_("\nWhich one do you prefer?"), 1, choices.size, 1)
+    return choices[choice - 1][0]
   end
 
   # show a menu for the different settings
@@ -108,7 +102,7 @@ private
     @out.puts ' 5) ' + _('Other')
     @out.puts '99) ' + _("Don't change any setting")
     @out.puts ""
-    @int.get("Please type the number of the setting you wish to change", 99)
+    @int.get("Please type the number of the setting you wish to change", 1, 99, 99)
   end
 
   # loop through the main menu
@@ -149,7 +143,7 @@ private
     @out.puts ' 9) ' + _("Only keep log when errors %s") % [showBool(@prefs.noLog)]
     @out.puts '99) ' + _("Back to settings main menu")
     @out.puts ""
-    @int.get("Please type the number of the setting you wish to change", 99)
+    @int.get("Please type the number of the setting you wish to change", 1, 99, 99)
   end
 
   # loop through the ripping submenu
@@ -158,13 +152,13 @@ private
       when 99 then loopMainMenu()
       when 1 then @prefs.cdrom = @string.get(_("Ripping drive"),
         @prefs.cdrom)
-      when 2 then @prefs.offset = @int.get(_("Drive offset"), 0)
+      when 2 then @prefs.offset = @int.get(_("Drive offset"), -1500, 1500, 0)
       when 3 then switchBool('padMissingSamples')
       when 4 then @prefs.rippersettings = \
         @string.get(_("Passing extra cdparanoia parameters"), "")
-      when 5 then @prefs.reqMatchesAll = @int.get(_("Match all chunks"), 2)
-      when 6 then @prefs.reqMatchesErrors = @int.get(_("Match erronous chunks"), 3)
-      when 7 then @prefs.maxTries = @int.get(_("Maximum trials"), 5)
+      when 5 then @prefs.reqMatchesAll = @int.get(_("Match all chunks"), 2, 100, 2)
+      when 6 then @prefs.reqMatchesErrors = @int.get(_("Match erronous chunks"), 2, 100, 3)
+      when 7 then @prefs.maxTries = @int.get(_("Maximum trials (0 = unlimited)"), 0, 100, 5)
       when 8 then switchBool('eject')
       when 9 then switchBool('noLog')
     else noValidChoiceMessage(choice)
@@ -185,7 +179,7 @@ private
     @out.puts ' 6) ' + _("Way to handle pre-emphasis") + ": %s" % [@prefs.preEmphasis]
     @out.puts '99) ' + _("Back to settings main menu")
     @out.puts ""
-    @int.get("Please type the number of the setting you wish to change", 99)
+    @int.get("Please type the number of the setting you wish to change", 1, 99, 99)
   end
 
   # loop through the toc submenu
@@ -196,7 +190,7 @@ private
       when 2 then switchBool('image')
       when 3 then switchBool('ripHiddenAudio')
       when 4 then @prefs.minLengthHiddenTrack = \
-        @int.get(_("Mark as a hidden track when bigger than <X> seconds"), 2)
+        @int.get(_("Mark as a hidden track when bigger than <X> seconds"), 0, 30, 2)
       when 5 then setPregaps()
       when 6 then setPreEmphasis()
     else noValidChoiceMessage(choice)
@@ -244,7 +238,7 @@ private
     @out.puts '21) ' + _("Normalize modus") + ": %s" % [@prefs.gain]
     @out.puts '99) ' + _("Back to settings main menu")
     @out.puts ""
-    @int.get("Please type the number of the setting you wish to change", 99)
+    @int.get("Please type the number of the setting you wish to change", 1, 99, 99)
   end
 
   # loop through the codec submenu
@@ -277,7 +271,7 @@ private
       when 17 then setOtherCodec()
       when 18 then switchBool('playlist')
       when 19 then @prefs.maxThreads = \
-        @int.get(_("Maximum extra encoding threads"), 2)
+        @int.get(_("Maximum extra encoding threads"), 0, 10, 2)
       when 20 then setNormalizer()
       when 21 then setNormalizeModus()
     else noValidChoiceMessage(choice)
@@ -320,7 +314,7 @@ private
     @out.puts ' 8) ' + _("Musicbrainz use first known year (including LPs) %s") % [showBool(@prefs.useEarliestDate)]
     @out.puts '99) ' + _("Back to settings main menu")
     @out.puts ""
-    @int.get("Please type the number of the setting you wish to change", 99)
+    @int.get("Please type the number of the setting you wish to change", 1, 99, 99)
   end
 
   # loop through the freedb menu
@@ -375,7 +369,7 @@ private
     @out.puts '10) ' + _("Debug mode %s") % [showBool(@prefs.debug)]
     @out.puts '99) ' + _("Back to settings main menu")
     @out.puts ""
-    @int.get("Please type the number of the setting you wish to change", 99)
+    @int.get("Please type the number of the setting you wish to change", 1, 99, 99)
   end
 
   # loop through the other menu

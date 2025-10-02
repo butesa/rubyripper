@@ -67,7 +67,7 @@ private
       elsif value.empty? ; value = ''
       elsif value == "''" ; value = ''
       # replace an integer string with an integer
-      elsif value.to_i > 0 || value == '0' ; value = value.to_i
+      elsif value.to_i != 0 || value == '0' ; value = value.to_i
       end
 
       return [key, value]
