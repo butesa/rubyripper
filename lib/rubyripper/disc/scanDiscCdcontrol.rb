@@ -68,7 +68,7 @@ private
 
   # check the query result for errors
   def isValidQuery(query)
-    if query.nil?
+    if query.empty?
       @status = 'notInstalled'
       return false
     end
