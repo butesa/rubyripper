@@ -44,6 +44,9 @@ module Preferences
     # If true, pad missing samples (due to the offset) with zeroes.
     attr_accessor :padMissingSamples
 
+    # Command to execute cdparanoia
+    attr_accessor :rippercommand
+
     # Extra parameters passed to cdparanoia
     attr_accessor :rippersettings
 
@@ -61,6 +64,9 @@ module Preferences
 
     # Throw away the log if no errors are found
     attr_accessor :noLog
+
+    # Use cdparanoia offset workarounds
+    attr_accessor :offsetWorkarounds
 
     # TOC ANALYSIS PREFERENCES
     # Create a cuesheet

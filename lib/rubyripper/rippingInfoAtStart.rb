@@ -59,14 +59,15 @@ private
     @logString << _("Used drive") + '     : ' + @disc.devicename + '   '
     @logString << _("Device") + ': ' + @prefs.cdrom + "\n\n"
     
-    @logString << _("Used ripper") + '    : ' + version('cdparanoia') + "\n"
+    @logString << _("Used ripper") + '      : ' + version(@prefs.rippercommand) + "\n"
+    @logString << _("Command") + '          : ' + @prefs.rippercommand + "\n"
     @logString << _("Selected options") + ' : ' + @prefs.rippersettings + "\n\n"
     
     @logString << _("Matches required for all chunks") + '       : ' + "#{@prefs.reqMatchesAll}\n"
     @logString << _("Matches required for erroneous chunks") + ' : ' + "#{@prefs.reqMatchesErrors}\n\n"
 
     @logString << _("Read offset correction") + '                      : ' + "#{@prefs.offset}\n"
-    @logString << _("Overread into Lead-In and Lead-Out") + '          : ' + _("No") + "\n"
+    @logString << _("Use cdparanoia offset workarounds           : %s\n") % [@prefs.offsetWorkarounds ? _("Yes") : _("No")]
     @logString << _("Fill up missing offset samples with silence : %s\n") % [@prefs.padMissingSamples ? _("Yes") : _("No")]
     @logString << _("Null samples used in CRC calculations") + '       : ' + _("Yes") + "\n\n"
   end

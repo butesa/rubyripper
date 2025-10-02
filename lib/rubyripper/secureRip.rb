@@ -360,47 +360,65 @@ is #{@disc.getFileSize(track)} bytes." if @prefs.debug
 
     @log.newTrack(track) if @trial == 1
 
-    # What start/length do we expect?
-    # Correct for whole frames if necessary (cdparanoia doesn't do this)
-    offsetFullFrames = @prefs.offset / SAMPLES_A_FRAME
-    # offsetRemainder is always 0 or bigger, because of the way integer 
-    # definition is defined in ruby
-    offsetRemainder = @prefs.offset - offsetFullFrames * SAMPLES_A_FRAME
-    start = @disc.getStartSector(track) + offsetFullFrames
-    length = @disc.getLengthSector(track) - 1
-
-    if start < 0 and @prefs.offset < 0
-      # Adjust the start so that we never read into the lead-in.
-      start = 0
-      noOffset = true
-    elsif @prefs.offset > 0 && (@prefs.image || track == @disc.audiotracks)
-      # Adjust the start so that we never read into the lead-out.
-      start -= offsetFullFrames
-      noOffset = true
-    else
-      noOffset = false
-    end
-    
-    command = "cdparanoia"
-    if @prefs.rippersettings.size != 0
-      if !noOffset && offsetRemainder != 0 && (@prefs.image || track == @disc.audiotracks)
-        # when ripping the last track and using an offset, remove the -Z parameter
-        # TODO: This can only happen for negative offsets
-        #       We should find out if the cdparanoia bug is triggered only by positive offsets
-        #       If so, the code for removing -Z can be removed completely
-        command += " #{@rippersettingsCleaned}"
+    if @prefs.offsetWorkarounds
+      # What start/length do we expect?
+      # Correct for whole frames if necessary (cdparanoia doesn't do this)
+      offsetFullFrames = @prefs.offset / SAMPLES_A_FRAME
+      # offsetRemainder is always 0 or bigger, because of the way integer 
+      # definition is defined in ruby
+      offsetRemainder = @prefs.offset - offsetFullFrames * SAMPLES_A_FRAME
+      start = @disc.getStartSector(track) + offsetFullFrames
+      length = @disc.getLengthSector(track) - 1
+      
+      if start < 0 and @prefs.offset < 0
+        # Adjust the start so that we never read into the lead-in.
+        start = 0
+        noOffset = true
+      elsif @prefs.offset > 0 && (@prefs.image || track == @disc.audiotracks)
+        # Adjust the start so that we never read into the lead-out.
+        start -= offsetFullFrames
+        noOffset = true
       else
-        command += " #{@prefs.rippersettings}"
+        noOffset = false
       end
+      
+      command = @prefs.rippercommand
+      if @prefs.rippersettings.size != 0
+        if @prefs.offsetWorkarounds && !noOffset && offsetRemainder != 0 && (@prefs.image || track == @disc.audiotracks)
+          # when ripping the last track and using an offset, remove the -Z parameter
+          # TODO: This can only happen for negative offsets
+          #       We should find out if the cdparanoia bug is triggered only by positive offsets
+          #       If so, the code for removing -Z can be removed completely
+          command += " #{@rippersettingsCleaned}"
+        else
+          command += " #{@prefs.rippersettings}"
+        end
+      end
+      
+      command += " [.#{start}]-[.#{length}]"
+      
+      # the ported cdparanoia for MacOS misses the -d option, default drive will be used.
+      command += " -d #{@prefs.cdrom}" if @disc.multipleDriveSupport
+      
+      command += " -O #{offsetRemainder}" if !noOffset
+      command += " \"#{@fileScheme.getTempFile(track, @trial)}\""
+    else
+      # What start/length do we expect?
+      start = @disc.getStartSector(track)
+      length = @disc.getLengthSector(track) - 1
+
+      noOffset = false
+      
+      command = @prefs.rippercommand
+      command += " #{@prefs.rippersettings}" if @prefs.rippersettings.size != 0
+      command += " [.#{start}]-[.#{length}]"
+      
+      # the ported cdparanoia for MacOS misses the -d option, default drive will be used.
+      command += " -d #{@prefs.cdrom}" if @disc.multipleDriveSupport
+      
+      command += " -O #{@prefs.offset}"
+      command += " \"#{@fileScheme.getTempFile(track, @trial)}\""
     end
-    
-    command += " [.#{start}]-[.#{length}]"
-
-    # the ported cdparanoia for MacOS misses the -d option, default drive will be used.
-    command += " -d #{@prefs.cdrom}" if @disc.multipleDriveSupport
-
-    command += " -O #{offsetRemainder}" if !noOffset
-    command += " \"#{@fileScheme.getTempFile(track, @trial)}\""
 
     @exec.launch(command) if @cancelled == false #Launch the cdparanoia command
     # TODO: Missing Filename

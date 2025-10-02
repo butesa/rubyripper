@@ -39,12 +39,14 @@ module Preferences
       @data.cdrom = @deps.cdrom()
       @data.offset = 0
       @data.padMissingSamples = true
+      @data.rippercommand = 'cdparanoia'
       @data.rippersettings = '-Z'
       @data.reqMatchesAll = 2
       @data.reqMatchesErrors = 3
       @data.maxTries = 7
       @data.eject = true
       @data.noLog = false
+      @data.offsetWorkarounds = true
     end
 
     def setTocAnalysisDefaults
