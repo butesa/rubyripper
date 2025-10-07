@@ -121,7 +121,7 @@ class SecureRip
   def deEmphasize(track)
     if @prefs.createCue && @prefs.preEmphasis == "sox" &&
       @disc.preEmph?(track) && @deps.installed?("sox")
-      @exec.launch("sox #{@fileScheme.getTempFile(track, 1)} #{@fileScheme.getTempFile(track, 2)}")
+      @exec.launch("sox #{@fileScheme.getTempFile(track, 1)} #{@fileScheme.getTempFile(track, 2)} deemph")
       if @exec.status == 'ok'
         FileUtils.mv(@fileScheme.getTempFile(track, 2), @fileScheme.getTempFile(track, 1))
       else
