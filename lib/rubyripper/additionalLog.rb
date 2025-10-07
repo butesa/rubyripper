@@ -2,7 +2,7 @@ class AdditionalLog
   # The name of the logfile
   attr_accessor :filename
 
-  # The ontent of the logfile
+  # The content of the logfile
   attr_accessor :content
   
   def initialize(filename)
