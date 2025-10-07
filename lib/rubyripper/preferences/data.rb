@@ -44,8 +44,14 @@ module Preferences
     # If true, pad missing samples (due to the offset) with zeroes.
     attr_accessor :padMissingSamples
 
+    # Command to execute cdparanoia
+    attr_accessor :rippercommand
+
     # Extra parameters passed to cdparanoia
     attr_accessor :rippersettings
+
+    # Use cdparanoia offset workarounds
+    attr_accessor :offsetWorkarounds
 
     # The amount of times all sectors have to match
     attr_accessor :reqMatchesAll

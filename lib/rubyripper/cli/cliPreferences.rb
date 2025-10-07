@@ -134,15 +134,19 @@ private
     @out.puts "    **" + _("Find your offset at http://www.accuraterip.com/driveoffsets.htm.")
     @out.puts "    **" + _("Your drive model is shown in the logfile.")
     @out.puts ' 3) ' + _("Pad missing lead-in/lead-out samples with zeroes %s") % [showBool(@prefs.padMissingSamples)]
-    @out.puts ' 4) ' + _("Passing extra cdparanoia parameters") + ": %s" % [@prefs.rippersettings]
-    @out.puts ' 5) ' + _("Match all chunks") + ": %s" % [@prefs.reqMatchesAll]
-    @out.puts ' 6) ' + _("Match erroneous chunks") + ": %s" % [@prefs.reqMatchesErrors]
-    @out.puts ' 7) ' + _("Maximum trials") + ": %s" % [@prefs.maxTries == 0 ? "no\
+    @out.puts ' 4) ' + _("Cdparanoia command") + ": %s" % [@prefs.rippercommand]
+    @out.puts ' 5) ' + _("Passing extra cdparanoia parameters") + ": %s" % [@prefs.rippersettings]
+    @out.puts ' 6) ' + _("Use cdparanoia offset workarounds %s") % [showBool(@prefs.offsetWorkarounds)]
+    @out.puts "    **" + _("The cdparanoia -O parameter has some bugs. If you enable this option, rubyripper uses \
+some workarounds. You can try to disable this option if you have a recent version of libcdio-paranoia.")
+    @out.puts ' 7) ' + _("Match all chunks") + ": %s" % [@prefs.reqMatchesAll]
+    @out.puts ' 8) ' + _("Match erroneous chunks") + ": %s" % [@prefs.reqMatchesErrors]
+    @out.puts ' 9) ' + _("Maximum trials") + ": %s" % [@prefs.maxTries == 0 ? "no\
  maximum" : @prefs.maxTries]
-    @out.puts ' 8) ' + _("Eject disc after ripping %s") % [showBool(@prefs.eject)]
-    @out.puts ' 9) ' + _("Only keep log when errors %s") % [showBool(@prefs.noLog)]
-    @out.puts '10) ' + _("Save a copy of the log for each codec %s") % [showBool(@prefs.logPerCodec)]
-    @out.puts '11) ' + _("Log output of analysis commands %s") % [showBool(@prefs.logAnalysis)]
+    @out.puts '10) ' + _("Eject disc after ripping %s") % [showBool(@prefs.eject)]
+    @out.puts '11) ' + _("Only keep log when errors %s") % [showBool(@prefs.noLog)]
+    @out.puts '12) ' + _("Save a copy of the log for each codec %s") % [showBool(@prefs.logPerCodec)]
+    @out.puts '13) ' + _("Log output of analysis commands %s") % [showBool(@prefs.logAnalysis)]
     @out.puts '99) ' + _("Back to settings main menu")
     @out.puts ""
     @int.get("Please type the number of the setting you wish to change", 1, 99, 99)
@@ -156,15 +160,18 @@ private
         @prefs.cdrom)
       when 2 then @prefs.offset = @int.get(_("Drive offset"), -1500, 1500, 0)
       when 3 then switchBool('padMissingSamples')
-      when 4 then @prefs.rippersettings = \
+      when 4 then @prefs.rippercommand = \
+        @string.get(_("Cdparanoia command"), "")
+      when 5 then @prefs.rippersettings = \
         @string.get(_("Passing extra cdparanoia parameters"), "")
-      when 5 then @prefs.reqMatchesAll = @int.get(_("Match all chunks"), 2, 100, 2)
-      when 6 then @prefs.reqMatchesErrors = @int.get(_("Match erronous chunks"), 2, 100, 3)
-      when 7 then @prefs.maxTries = @int.get(_("Maximum trials (0 = unlimited)"), 0, 100, 5)
-      when 8 then switchBool('eject')
-      when 9 then switchBool('noLog')
-      when 10 then switchBool('logPerCodec')
-      when 11 then switchBool('logAnalysis')
+      when 6 then switchBool('offsetWorkarounds')
+      when 7 then @prefs.reqMatchesAll = @int.get(_("Match all chunks"), 2, 100, 2)
+      when 8 then @prefs.reqMatchesErrors = @int.get(_("Match erronous chunks"), 2, 100, 3)
+      when 9 then @prefs.maxTries = @int.get(_("Maximum trials (0 = unlimited)"), 0, 100, 5)
+      when 10 then switchBool('eject')
+      when 11 then switchBool('noLog')
+      when 12 then switchBool('logPerCodec')
+      when 13 then switchBool('logAnalysis')
     else noValidChoiceMessage(choice)
     end
     loopSubMenuRipping() unless choice == 99

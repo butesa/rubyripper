@@ -39,7 +39,9 @@ module Preferences
       @data.cdrom = @deps.cdrom()
       @data.offset = 0
       @data.padMissingSamples = true
+      @data.rippercommand = 'cdparanoia'
       @data.rippersettings = '-Z'
+      @data.offsetWorkarounds = true
       @data.reqMatchesAll = 2
       @data.reqMatchesErrors = 3
       @data.maxTries = 7

@@ -144,11 +144,11 @@ class ScanDiscCdparanoia
       @query = File.read(File.join(@prefs.testdisc, 'cdparanoia')).split("\n")
     else
       @multipleDriveSupport = true
-      @query = @exec.launch("cdparanoia -d #{@prefs.cdrom} -vQ", log=@disc.createLog('cdparanoia.log'))
+      @query = @exec.launch("#{@prefs.rippercommand} -d #{@prefs.cdrom} -vQ", log=@disc.createLog('cdparanoia.log'))
       # some versions of cdparanoia don't support the cdrom parameter
       
       if @query != nil && @query.include?('USAGE')
-        @query = @exec.launch("cdparanoia -vQ", log=@disc.createLog('cdparanoia.log'))
+        @query = @exec.launch("#{@prefs.rippercommand} -vQ", log=@disc.createLog('cdparanoia.log'))
         @multipleDriveSupport = false
       end
     end
