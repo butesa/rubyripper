@@ -40,7 +40,8 @@ class ScanDiscCdrdao
 
   attr_reader :error, :dataTracks, :discType, :tracks, :artist, :album
 
-  def initialize(execute=nil, prefs=nil, fileAndDir=nil)
+  def initialize(disc, execute=nil, prefs=nil, fileAndDir=nil)
+    @disc = disc
     @exec = execute ? execute : Execute.new()
     @prefs = @prefs = prefs ? prefs : Preferences::Main.instance
     @fileAndDir = fileAndDir ? fileAndDir : FileAndDir.instance()
@@ -67,6 +68,9 @@ class ScanDiscCdrdao
       displayStartMessage()
       @cdrdaoThread.join()
       displayScanResults()
+
+      tocLog = @disc.createLog('cdrdao.toc');
+      tocLog.content = @contents
     else
       @log.error(@error)
     end
@@ -112,7 +116,7 @@ private
   end
 
   def launchCdrdaoScan
-    @result = @exec.launch("cdrdao read-toc --device #{@prefs.cdrom} \"#{@tempfile}\"")
+    @result = @exec.launch("cdrdao read-toc --device #{@prefs.cdrom} \"#{@tempfile}\"", log=@disc.createLog('cdrdao.log'))
   end
   
   def cdrdaoScanSuccesfull

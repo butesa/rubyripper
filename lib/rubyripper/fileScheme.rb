@@ -91,8 +91,8 @@ class FileScheme
   end
 
   # return the full filename of the log
-  def getLogFile(codec)
-    File.join(@dir[codec], 'ripping.log')
+  def getLogFile(codec, filename = 'ripping.log')
+    File.join(@dir[codec], filename)
   end
 
   # return the full filename of the cuesheet
@@ -183,7 +183,9 @@ class FileScheme
     artist = @md.artist.gsub('/', '')
     album = @md.album.gsub('/', '')
 
-    @prefs.codecs.each do |codec|
+    # pseudo-codec for storing logs
+    codecs = @prefs.logPerCodec ? @prefs.codecs : @prefs.codecs + ['log']
+    codecs.each do |codec|
       dir = File.dirname(@fileScheme)
       {'%a' => artist, '%b' => album, '%f' => codec, '%g' => @md.genre, '%y' => @md.year, '%va' => artist}.each do |key, value|
         value.nil? ? dir.gsub!(key, '') : dir.gsub!(key, value)

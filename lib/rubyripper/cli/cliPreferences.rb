@@ -141,6 +141,8 @@ private
  maximum" : @prefs.maxTries]
     @out.puts ' 8) ' + _("Eject disc after ripping %s") % [showBool(@prefs.eject)]
     @out.puts ' 9) ' + _("Only keep log when errors %s") % [showBool(@prefs.noLog)]
+    @out.puts '10) ' + _("Save a copy of the log for each codec %s") % [showBool(@prefs.logPerCodec)]
+    @out.puts '11) ' + _("Log output of analysis commands %s") % [showBool(@prefs.logAnalysis)]
     @out.puts '99) ' + _("Back to settings main menu")
     @out.puts ""
     @int.get("Please type the number of the setting you wish to change", 1, 99, 99)
@@ -161,6 +163,8 @@ private
       when 7 then @prefs.maxTries = @int.get(_("Maximum trials (0 = unlimited)"), 0, 100, 5)
       when 8 then switchBool('eject')
       when 9 then switchBool('noLog')
+      when 10 then switchBool('logPerCodec')
+      when 11 then switchBool('logAnalysis')
     else noValidChoiceMessage(choice)
     end
     loopSubMenuRipping() unless choice == 99

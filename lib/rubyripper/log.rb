@@ -52,11 +52,15 @@ class Log
 
   def createLog
     @logfiles = Array.new
-    @prefs.codecs.each do |codec|
+    getLogCodecs().each do |codec|
       logfile = @fileScheme.getLogFile(codec)
       @file.createDirForFile(logfile)
       @logfiles << File.open(logfile, 'a')
     end
+  end
+  
+  def getLogCodecs
+    return @prefs.logPerCodec ? @prefs.codecs : ['log']
   end
 
   # update the ripping progress in the gui
@@ -231,6 +235,14 @@ class Log
   def deleteLogfiles
     if @problem_tracks.empty? && !@encodingErrors
       @logfiles.each{|logfile| File.delete(logfile.path)}
+    end
+  end
+  
+  def writeAdditionalLog(logInfo)
+    getLogCodecs().each do |codec|
+      logfile = @fileScheme.getLogFile(codec, logInfo.filename)
+      @file.createDirForFile(logfile)
+      File.write(logfile, logInfo.content)
     end
   end
 end

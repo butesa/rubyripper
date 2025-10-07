@@ -19,11 +19,12 @@ require 'rubyripper/disc/scanDiscCdrdao'
 
 describe ScanDiscCdrdao do
 
+  let(:disc) {double{'Disc'}.as_null_object}
   let(:prefs) {double('Preferences').as_null_object}
   let(:exec) {double('Execute').as_null_object}
   let(:file) {double('FileAndDir').as_null_object}
   let(:log) {double('Log').as_null_object}
-  let(:cdrdao) {ScanDiscCdrdao.new(exec, prefs, file)}
+  let(:cdrdao) {ScanDiscCdrdao.new(disc, exec, prefs, file)}
   
   before(:each){allow(prefs).to receive(:cdrom).and_return('/dev/cdrom')}
 

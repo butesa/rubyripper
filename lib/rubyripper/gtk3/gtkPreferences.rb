@@ -102,6 +102,8 @@ class GtkPreferences
     @ripEntry.text = @prefs.rippersettings
     @eject.active = @prefs.eject
     @noLog.active = @prefs.noLog
+    @logPerCodec.active = @prefs.logPerCodec
+    @logAnalysis.active = @prefs.logAnalysis
 #toc settings
     @createCue.active = @prefs.createCue
     @image.active = @prefs.image
@@ -170,6 +172,8 @@ class GtkPreferences
     @prefs.rippersettings = @ripEntry.text
     @prefs.eject = @eject.active?
     @prefs.noLog = @noLog.active?
+    @prefs.logPerCodec = @logPerCodec.active?
+    @prefs.logAnalysis = @logAnalysis.active?
 #toc settings
     @prefs.createCue = @createCue.active?
     @prefs.image = @image.active?
@@ -322,12 +326,16 @@ It is recommended to enable this option.")
     @rip_label = Gtk::Label.new(_("Pass cdparanoia options:")) ; @rip_label.set_alignment(0.0, 0.5)
     @eject= Gtk::CheckButton.new(_('Eject cd when finished'))
     @noLog = Gtk::CheckButton.new(_('Only keep logfile if correction is needed'))
+    @logPerCodec = Gtk::CheckButton.new(_('Save a copy of the log for each codec'))
+    @logAnalysis = Gtk::CheckButton.new(_('Log output of analysis commands'))
     @ripEntry= Gtk::Entry.new ; @ripEntry.width_request = 120
 #pack objects
     @table60.attach(@rip_label, 0, 1, 0, 1, Gtk::AttachOptions::FILL, Gtk::AttachOptions::SHRINK, 0, 0)
     @table60.attach(@ripEntry, 1, 2, 0, 1, Gtk::AttachOptions::SHRINK, Gtk::AttachOptions::SHRINK, 0, 0)
     @table60.attach(@eject, 0, 2, 1, 2, Gtk::AttachOptions::FILL, Gtk::AttachOptions::SHRINK, 0, 0)
     @table60.attach(@noLog, 0, 2, 2, 3, Gtk::AttachOptions::FILL|Gtk::AttachOptions::SHRINK, Gtk::AttachOptions::SHRINK, 0, 0)
+    @table60.attach(@logPerCodec, 0, 2, 3, 4, Gtk::AttachOptions::FILL|Gtk::AttachOptions::SHRINK, Gtk::AttachOptions::SHRINK, 0, 0)
+    @table60.attach(@logAnalysis, 0, 2, 4, 5, Gtk::AttachOptions::FILL|Gtk::AttachOptions::SHRINK, Gtk::AttachOptions::SHRINK, 0, 0)
     @frame60 = newFrame(_('Ripping related'), child=@table60)
 #pack all frames into a single page
     @page1 = Gtk::Box.new(:vertical) #One VBox to rule them all

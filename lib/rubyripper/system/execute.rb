@@ -38,11 +38,12 @@ attr_reader :status
 
   # return output for command
   # clear the file if it exists before the program runs
-  def launch(command, filename=false, noTranslations=nil)
+  def launch(command, log=nil, noTranslations=nil, filename=false)
     return true if command.empty?
     program = command.split[0]
     command = "LC_ALL=C; #{command}" if noTranslations
     puts "DEBUG: #{command}" if @prefs.debug
+    timeStarted = Time.now
 
     if @deps.installed?(program)
       File.delete(filename) if filename && File.exist?(filename)
@@ -66,6 +67,17 @@ attr_reader :status
     else
       puts Errors.binaryNotFound(program)
       output = nil
+    end
+
+    timeFinished = Time.now
+    
+    if log
+      logContent = Array.new
+      log.content = \
+        "Command:  #{command}\n" + \
+        "Duration: #{sprintf('%.3f', timeFinished - timeStarted)} seconds\n" + \
+        "State:    #{(output.nil? ? 'Error' : 'Ok')}\n\n" + \
+        output.join()
     end
 
     if    output.nil?   then output = [] # Sentinel for error

@@ -62,6 +62,7 @@ class Rubyripper
       @log.start() # TODO find a better name for the class and function
       @rippingInfoAtStart.show()
       readyForRip = @prefs.createCue ? waitForCuesheet() : true
+      @disc.saveLogs(@log) if @prefs.logAnalysis
       @ripper.startTheRip() if readyForRip
     else
       @ui.update("dir_exists", @fileScheme.dir.values[0])

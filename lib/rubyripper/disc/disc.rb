@@ -20,17 +20,19 @@ require 'rubyripper/disc/calcFreedbID'
 require 'rubyripper/disc/calcMusicbrainzID'
 require 'rubyripper/system/dependency'
 require 'rubyripper/preferences/main'
+require 'rubyripper/additionalLog'
 
 # A helper class to hide lower level details
 class Disc
 attr_reader :metadata
 
   def initialize(cdpar=nil, freedb=nil, musicbrainz=nil, deps=nil, prefs=nil)
-    @cdparanoia = cdpar ? cdpar : ScanDiscCdparanoia.new()
+    @cdparanoia = cdpar ? cdpar : ScanDiscCdparanoia.new(self)
     @calcFreedbID = freedb ? freedb : CalcFreedbID.new(self)
     @calcMusicbrainzID = musicbrainz ? musicbrainz : CalcMusicbrainzID.new(self)
     @deps = deps ? deps : Dependency.instance
     @prefs = prefs ? prefs : Preferences::Main.instance
+    @additionalLogs = Array.new
   end
   
   # scan the disc for a drive
@@ -47,10 +49,10 @@ attr_reader :metadata
     @scanner ||= 
     if @deps.installed?('cd-info')
       require 'rubyripper/disc/scanDiscCdinfo'
-      cdinfo ? cdinfo : ScanDiscCdinfo.new()
+      cdinfo ? cdinfo : ScanDiscCdinfo.new(self)
     elsif @deps.installed?('cdcontrol')
       require 'rubyripper/disc/scanDiscCdcontrol'
-      cdcontrol ? cdcontrol : ScanDiscCdcontrol.new()
+      cdcontrol ? cdcontrol : ScanDiscCdcontrol.new(self)
     else
       @cdparanoia
     end
@@ -69,7 +71,7 @@ attr_reader :metadata
   # this can take a while so run in background
   def startExtendedTocScan()
     require 'rubyripper/disc/scanDiscCdrdao'
-    @cdrdao = ScanDiscCdrdao.new()
+    @cdrdao = ScanDiscCdrdao.new(self)
     @cdrdao.scanInBackground()
   end
   
@@ -92,6 +94,18 @@ attr_reader :metadata
 
   def save
     @metadata.save() if @metadata
+  end
+  
+  def createLog(filename)
+    log = AdditionalLog.new(filename)
+    @additionalLogs << log
+    return log
+  end
+  
+  def saveLogs(logger)
+    @additionalLogs.each do |logEntry|
+      logger.writeAdditionalLog(logEntry)
+    end
   end
 
   private

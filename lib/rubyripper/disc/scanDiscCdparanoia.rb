@@ -35,7 +35,8 @@ class ScanDiscCdparanoia
 
   # * execute is an instance of Execute
   # * permissionDrive is an instance of PermissionDrive
-  def initialize(execute=nil, permissionDrive=nil,  prefs=nil, out=nil)
+  def initialize(disc, execute=nil, permissionDrive=nil,  prefs=nil, out=nil)
+    @disc = disc
     @exec = execute ? execute : Execute.new()
     @perm = permissionDrive ? permissionDrive : PermissionDrive.new()
     @prefs = prefs ? prefs : Preferences::Main.instance
@@ -143,11 +144,11 @@ class ScanDiscCdparanoia
       @query = File.read(File.join(@prefs.testdisc, 'cdparanoia')).split("\n")
     else
       @multipleDriveSupport = true
-      @query = @exec.launch("cdparanoia -d #{@prefs.cdrom} -vQ")
+      @query = @exec.launch("cdparanoia -d #{@prefs.cdrom} -vQ", log=@disc.createLog('cdparanoia.log'))
       # some versions of cdparanoia don't support the cdrom parameter
       
       if @query != nil && @query.include?('USAGE')
-        @query = @exec.launch("cdparanoia -vQ")
+        @query = @exec.launch("cdparanoia -vQ", log=@disc.createLog('cdparanoia.log'))
         @multipleDriveSupport = false
       end
     end
