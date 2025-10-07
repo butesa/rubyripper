@@ -163,7 +163,7 @@ class ScanDiscCdparanoia
 
   # check the query result for errors
   def isValidQuery()
-    if @query.nil?
+    if @query.empty?
       updateStatus([:notInstalled, 'cdparanoia'])
       return false
     end

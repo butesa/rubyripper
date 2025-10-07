@@ -68,8 +68,9 @@ class ScanDiscCdrdao
       @cdrdaoThread.join()
       displayScanResults()
     else
-      @log << @error
+      @log.error(@error)
     end
+    @error.nil?
   end
   
   # some discs have a silence tag at the start of the disc
@@ -115,18 +116,26 @@ private
   end
   
   def cdrdaoScanSuccesfull
-    @error = case @result
-      when nil then Errors.binaryNotFound('cdrdao')
-      when /ERROR: Unit not ready, giving up./ then Errors.noDiscInDrive(@prefs.cdrom)
-      when /Usage: cdrdao/ then Errors.wrongParameters('cdrdao')
-      when /ERROR: Cannot setup device/ then Errors.unknownDrive(@prefs.cdrom)
-      else nil
-    end   
+    if @result.empty?
+      @error = Errors.binaryNotFound('cdrdao')
+    else
+      @error = nil
+      @result.each do |line|
+        case line
+          when /ERROR: Unit not ready, giving up./ then @error = Errors.noDiscInDrive(@prefs.cdrom) ; break
+          when /Usage: cdrdao/ then @error = Errors.wrongParameters('cdrdao') ; break
+          when /ERROR: Cannot setup device/ then @error = Errors.unknownDrive(@prefs.cdrom) ; break
+        end
+      end
+    end
     @error.nil?
   end
   
   def cdrdaoFileValid
-    return false unless @fileAndDir.exist?(@tempfile)
+    unless @fileAndDir.exist?(@tempfile)
+      @error = Errors.failedToExecute('cdrdao', "#{@tempfile} was not created.")
+      return false
+    end
     @contents = @fileAndDir.read(@tempfile)
     cleanupTempFile()
   end
@@ -143,6 +152,12 @@ private
   def parseCdrdaoFile
     track = nil
     @contents.encode!('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '?')
+
+    unless @contents[0..1] == 'CD'
+      @error = Errors.failedToExecute('cdrdao', "#{@tempfile} is not a valid TOC file.")
+      return false
+    end
+
     @contents.each_line do |line|
       if line[0..1] == 'CD' && @discType.nil?
         @discType = line.strip()
@@ -178,7 +193,7 @@ private
 
   def displayScanResults
     if not @error.nil?
-      @log << @error
+      @log.error(@error)
       return false
     end
     

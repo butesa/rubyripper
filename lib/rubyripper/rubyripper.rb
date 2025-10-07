@@ -61,8 +61,8 @@ class Rubyripper
       createHelpObjects()
       @log.start() # TODO find a better name for the class and function
       @rippingInfoAtStart.show()
-      waitForCuesheet() if @prefs.createCue
-      @ripper.startTheRip()
+      readyForRip = @prefs.createCue ? waitForCuesheet() : true
+      @ripper.startTheRip() if readyForRip
     else
       @ui.update("dir_exists", @fileScheme.dir.values[0])
     end
@@ -88,8 +88,9 @@ class Rubyripper
   end
 
   def waitForCuesheet
-    @disc.finishExtendedTocScan(@log)
+    return false unless @disc.finishExtendedTocScan(@log)
     @prefs.codecs.each{|codec| @file.write(@fileScheme.getCueFile(codec), @disc.getCuesheet(codec, fileScheme))}
+    return true
   end
 
   def calculatePercentageUpdateForProgressbar()
