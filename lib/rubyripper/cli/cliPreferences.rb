@@ -147,6 +147,7 @@ some workarounds. You can try to disable this option if you have a recent versio
     @out.puts '11) ' + _("Only keep log when errors %s") % [showBool(@prefs.noLog)]
     @out.puts '12) ' + _("Save a copy of the log for each codec %s") % [showBool(@prefs.logPerCodec)]
     @out.puts '13) ' + _("Log output of analysis commands %s") % [showBool(@prefs.logAnalysis)]
+    @out.puts '14) ' + _("Calculate peak level %s") % [showBool(@prefs.calculatePeakLevel)]
     @out.puts '99) ' + _("Back to settings main menu")
     @out.puts ""
     @int.get("Please type the number of the setting you wish to change", 1, 99, 99)
@@ -172,6 +173,7 @@ some workarounds. You can try to disable this option if you have a recent versio
       when 11 then switchBool('noLog')
       when 12 then switchBool('logPerCodec')
       when 13 then switchBool('logAnalysis')
+      when 14 then switchBool('calculatePeakLevel')
     else noValidChoiceMessage(choice)
     end
     loopSubMenuRipping() unless choice == 99

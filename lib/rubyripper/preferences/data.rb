@@ -74,6 +74,9 @@ module Preferences
     # Log output of analysis commands
     attr_accessor :logAnalysis
 
+    # Calculate peak level
+    attr_accessor :calculatePeakLevel
+
     # TOC ANALYSIS PREFERENCES
     # Create a cuesheet
     attr_accessor :createCue

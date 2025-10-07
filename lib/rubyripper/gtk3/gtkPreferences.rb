@@ -106,6 +106,7 @@ class GtkPreferences
     @logPerCodec.active = @prefs.logPerCodec
     @logAnalysis.active = @prefs.logAnalysis
     @offsetWorkarounds.active = @prefs.offsetWorkarounds
+    @calculatePeakLevel.active = @prefs.calculatePeakLevel
 #toc settings
     @createCue.active = @prefs.createCue
     @image.active = @prefs.image
@@ -178,6 +179,7 @@ class GtkPreferences
     @prefs.logPerCodec = @logPerCodec.active?
     @prefs.logAnalysis = @logAnalysis.active?
     @prefs.offsetWorkarounds = @offsetWorkarounds.active?
+    @prefs.calculatePeakLevel = @calculatePeakLevel.active?
 #toc settings
     @prefs.createCue = @createCue.active?
     @prefs.image = @image.active?
@@ -337,6 +339,7 @@ of libcdio-paranoia.")
     @noLog = Gtk::CheckButton.new(_('Only keep logfile if correction is needed'))
     @logPerCodec = Gtk::CheckButton.new(_('Save a copy of the log for each codec'))
     @logAnalysis = Gtk::CheckButton.new(_('Log output of analysis commands'))
+    @calculatePeakLevel = Gtk::CheckButton.new(_('Calculate peak level'))
     @ripComEntry= Gtk::Entry.new ; @ripComEntry.width_request = 120
     @ripEntry= Gtk::Entry.new ; @ripEntry.width_request = 120
 #pack objects
@@ -349,6 +352,7 @@ of libcdio-paranoia.")
     @table60.attach(@noLog, 0, 2, 4, 5, Gtk::AttachOptions::FILL|Gtk::AttachOptions::SHRINK, Gtk::AttachOptions::SHRINK, 0, 0)
     @table60.attach(@logPerCodec, 0, 2, 5, 6, Gtk::AttachOptions::FILL|Gtk::AttachOptions::SHRINK, Gtk::AttachOptions::SHRINK, 0, 0)
     @table60.attach(@logAnalysis, 0, 2, 6, 7, Gtk::AttachOptions::FILL|Gtk::AttachOptions::SHRINK, Gtk::AttachOptions::SHRINK, 0, 0)
+    @table60.attach(@calculatePeakLevel, 0, 2, 7, 8, Gtk::AttachOptions::FILL|Gtk::AttachOptions::SHRINK, Gtk::AttachOptions::SHRINK, 0, 0)
     @frame60 = newFrame(_('Ripping related'), child=@table60)
 #pack all frames into a single page
     @page1 = Gtk::Box.new(:vertical) #One VBox to rule them all

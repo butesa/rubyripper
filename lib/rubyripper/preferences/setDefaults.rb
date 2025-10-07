@@ -49,6 +49,7 @@ module Preferences
       @data.noLog = false
       @data.logPerCodec = true
       @data.logAnalysis = false
+      @data.calculatePeakLevel = true
     end
 
     def setTocAnalysisDefaults

@@ -445,7 +445,7 @@ is #{@disc.getFileSize(track)} bytes." if @prefs.debug
     @digest = hash.md5
     @crc32 = hash.crc32
 
-    if trial == 1
+    if @prefs.calculatePeakLevel && trial == 1
       @calcPeakLevel ||= CalcPeakLevel.new(@log)
       @peakLevel = @calcPeakLevel.getPeakLevel(filename, sprintf('%02d', track))
     end
