@@ -185,6 +185,9 @@ module Preferences
     # LP release dates to CD release dates)
     attr_accessor :useEarliestDate
 
+    # Use cd text as fallback
+    attr_accessor :useCdText
+
     # OTHER PREFERENCES
     # Base output directory for all your rips
     attr_accessor :basedir

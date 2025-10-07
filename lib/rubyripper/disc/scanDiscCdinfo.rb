@@ -28,7 +28,7 @@ class ScanDiscCdinfo
   include AudioCalculations
 
   attr_reader :status, :version, :discMode, :deviceName, :totalSectors,
-      :playtime, :audiotracks, :firstAudioTrack, :dataTracks
+      :playtime, :audiotracks, :firstAudioTrack, :dataTracks, :artist, :album
   
   # Cd-info starts all tracks with 2 seconds extra if compared with cdparanoia
   OFFSET_CDINFO = -150
@@ -41,12 +41,14 @@ class ScanDiscCdinfo
     
     @startSector = Hash.new
     @dataTracks = Array.new
+    @trackNames = Hash.new
+    @varArtists = Hash.new
   end
 
   # scan the contents of the disc
   def scan
     return true if @status == 'ok'
-    query = @exec.launch("cd-info -C #{@prefs.cdrom} -A --no-cddb")
+    query = @exec.launch("cd-info -C #{@prefs.cdrom} --no-cddb")
 
     if isValidQuery(query)
       @status = 'ok'
@@ -66,6 +68,14 @@ class ScanDiscCdinfo
 
   def tracks ; @audiotracks + @dataTracks.length ; end
 
+  def getTrackname(track)
+    @trackNames.key?(track) ? @trackNames[track] : String.new
+  end
+
+  def getVarArtist(track)
+    @varArtists.key?(track) ? @varArtists[track] : String.new
+  end
+  
 private
 
   # check the query result for errors
@@ -89,29 +99,60 @@ private
   # store the info of the query in variables
   def parseQuery(query)
     tracknumber = 0
+    section = nil
     query.each do |line|
-      @version = line.strip() if line =~ /cd-info version/
-      @vendor = $'.strip if line =~ /Vendor\s+:\s/
-      @model = $'.strip if line =~ /Model\s+:\s/
-      @revision = $'.strip if line =~ /Revision\s+:\s/
-      @discMode = $'.strip if line =~ /Disc mode is listed as:\s/
+      if section == nil
+        @version = line.strip() if line =~ /cd-info version/
+        @vendor = $'.strip if line =~ /Vendor\s+:\s/
+        @model = $'.strip if line =~ /Model\s+:\s/
+        @revision = $'.strip if line =~ /Revision\s+:\s/
+        @discMode = $'.strip if line =~ /Disc mode is listed as:\s/
+        
+        if line =~ /Track List \(/
+          section = :tracklist
+          tracknumber = 0
+        elsif line =~ /Language 0 /
+          section = :cdtext
+          tracknumber = 0
+        end
 
-      # discover a track
-      if line =~ /\s+\d+:\s/ # for example: '  1: '
-        tracknumber = $&.strip()[0..-2].to_i
-        trackinfo = $'.split(/\s+/)
-        @startSector[tracknumber] = toSectors(trackinfo[0]) + OFFSET_CDINFO
-        @dataTracks << tracknumber if trackinfo[2] == "data"
-        @firstAudioTrack = tracknumber unless @firstAudioTrack || trackinfo[2] == "data"
-      end
+      elsif section == :tracklist
+        # discover a track
+        if line =~ /\s+\d+:\s/ # for example: '  1: '
+          tracknumber = $&.strip()[0..-2].to_i
+          trackinfo = $'.split(/\s+/)
+          @startSector[tracknumber] = toSectors(trackinfo[0]) + OFFSET_CDINFO
+          @dataTracks << tracknumber if trackinfo[2] == "data"
+          @firstAudioTrack = tracknumber unless @firstAudioTrack || trackinfo[2] == "data"
+          @finalTrack = tracknumber
+        end
 
-      if line =~ /leadout/
-        line =~ /\d\d:\d\d:\d\d/
-        @totalSectors = toSectors($&) + OFFSET_CDINFO
-        break
+        if line =~ /leadout/
+          line =~ /\d\d:\d\d:\d\d/
+          @totalSectors = toSectors($&) + OFFSET_CDINFO
+          section = nil
+        end
+      
+      elsif section == :cdtext
+        if line =~ /CD-TEXT for Track\s+(\d+):/
+          tracknumber = $1.to_i
+        elsif line =~ /TITLE: /
+          if tracknumber == 0
+            @album = $'.strip()
+          else
+            @trackNames[tracknumber] = $'.strip()
+          end
+        elsif line =~ /PERFORMER: /
+          if tracknumber == 0
+            @artist = $'.strip()
+          else
+            @varArtists[tracknumber] = $'.strip()
+          end
+        elsif line =~ /Language 1 /
+          section = nil
+        end
       end
     end
-    @finalTrack = tracknumber
   end
 
   # Add some extra info that is calculated

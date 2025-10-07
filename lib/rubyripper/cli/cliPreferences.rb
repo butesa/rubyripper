@@ -312,6 +312,7 @@ private
     @out.puts ' 6) ' + _("Musicbrainz preferred countries (1st, 2nd,...)") + ": %s" % [@prefs.preferMusicBrainzCountries]
     @out.puts ' 7) ' + _("Musicbrainz preferred date") + ": %s" % [@prefs.preferMusicBrainzDate]
     @out.puts ' 8) ' + _("Musicbrainz use first known year (including LPs) %s") % [showBool(@prefs.useEarliestDate)]
+    @out.puts ' 9) ' + _("Use cd text as fallback %s") % [showBool(@prefs.useCdText)]
     @out.puts '99) ' + _("Back to settings main menu")
     @out.puts ""
     @int.get("Please type the number of the setting you wish to change", 1, 99, 99)
@@ -333,6 +334,7 @@ private
         'US,UK,XW,XE,JP')
       when 7 then setPreferMusicBrainzDate()
       when 8 then switchBool('useEarliestDate')
+      when 9 then switchBool('useCdText')
     else noValidChoiceMessage(choice)
     end
     loopSubMenuMetadata() unless choice == 99

@@ -129,6 +129,7 @@ class GtkPreferences
     @chooseLatestRelease.active = @prefs.preferMusicBrainzDate == 'later'
     @chooseOriginalYear.active = @prefs.useEarliestDate
     @chooseReleaseYear.active = !@prefs.useEarliestDate
+    @useCdText.active = @prefs.useCdText
 #other
     @basedirEntry.text = @prefs.basedir
     @namingNormalEntry.text = @prefs.namingNormal
@@ -196,6 +197,7 @@ class GtkPreferences
     @prefs.preferMusicBrainzCountries = @entryPreferredCountry.text
     @prefs.preferMusicBrainzDate = @chooseOriginalRelease.active? ? 'earlier' : 'later'
     @prefs.useEarliestDate = @chooseOriginalYear.active?
+    @prefs.useCdText = @useCdText.active?
 #other
     @prefs.basedir = @basedirEntry.text
     @prefs.namingNormal = @namingNormalEntry.text
@@ -581,8 +583,10 @@ It is recommended to enable this option.")
     @metadataChoice.append_text(_("Gnudb"))
     @metadataChoice.append_text(_("Musicbrainz"))
     @metadataChoice.append_text(_("Don't use a metadata provider"))
+    @useCdText= Gtk::CheckButton.new(_('Use cd text as fallback'))
     @table90.attach(@metadataLabel,0,1,0,1,Gtk::AttachOptions::FILL, Gtk::AttachOptions::SHRINK,0,0)
     @table90.attach(@metadataChoice,1,2,0,1,Gtk::AttachOptions::FILL, Gtk::AttachOptions::SHRINK,0,0)
+    @table90.attach(@useCdText, 0, 2, 1, 2, Gtk::AttachOptions::FILL, Gtk::AttachOptions::SHRINK, 0, 0)
     @frame90 = newFrame(_('Choose your metadata provider'), child=@table90)
   end
   
