@@ -68,16 +68,16 @@ class CliGetInt < CliGetAnswer
   end
 
   # get the input from the user
-  def get(question, default)
-    input = super
+  def get(question, min, max, default)
+    input = super(question, default)
     if input == default
       return default
     # 0 may be a valid response, but any string.to_i == 0
-    elsif input.to_i > 0 || input == "0"
+    elsif (input.to_i != 0 || input == "0") && input.to_i >= min && input.to_i <= max
       return input.to_i
     else
-      @out.print _("Please enter an integer value. Try again.\n")
-      get(question, default)
+      @out.print _("Please enter an integer value between #{min} and #{max}. Try again.\n")
+      get(question, min, max, default)
     end
   end
 end

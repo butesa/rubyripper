@@ -60,7 +60,7 @@ private
     @out.puts '88) ' + _('To toggle all tracks on/off')
     @out.puts "99) " + _("Back to main menu")
     @out.puts ''
-    @int.get("Please type the number you wish to change", 99)
+    @int.get("Please type the number you wish to change", 1, 99, 99)
   end
 
   # show 30 characters and fill it out
